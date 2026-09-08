@@ -1,0 +1,85 @@
+{
+  "revenue_accounting": {
+    "goal": {
+      "metric": "ARR",
+      "team": "Finance",
+      "owner": "CEO/CFO",
+      "cadence": "quarterly",
+      "opening": "$48.0M",
+      "current": "$54.0M",
+      "target": "$60.0M",
+      "net_new_qtd": "+$6.0M",
+      "percent_to_target": "90%",
+      "status": "behind"
+    },
+    "drivers": [
+      { "metric": "New", "value": "+$3.6M" },
+      { "metric": "Expansion", "value": "+$4.2M" },
+      { "metric": "Churn", "value": "-$1.2M" }
+    ],
+    "inputs": [
+      { "metric": "New (Sales)", "value": "+$3.6M" },
+      { "metric": "Contraction (CS)", "value": "-$0.6M" },
+      { "metric": "Expansion (CS)", "value": "+$4.2M" },
+      { "metric": "Churn (CS)", "value": "-$1.2M" },
+      { "metric": "Realized by Cash", "value": "$15.2M collected of $54.0M ARR" }
+    ],
+    "guardrails": [
+      { "metric": "NRR", "value": "105%", "threshold": ">= 100%", "status": "healthy" },
+      { "metric": "GRR", "value": "96%", "threshold": "floor", "status": "healthy" },
+      { "metric": "Pace to Objective", "value": "$54.0M of $60.0M", "status": "behind" }
+    ],
+    "funnel": [
+      { "stage": "land", "metric": "New ACV booked", "value": "+$3.6M", "source_workflow": "New Business" },
+      { "stage": "onboard", "metric": "Accounts provisioned", "value": "~40 accounts QTD" },
+      { "stage": "renew", "metric": "Renewed ARR", "value": "+$10.2M of $12.0M book (27 of 34 accounts)", "source_workflow": "Retention" },
+      { "stage": "expand", "metric": "Expansion ARR", "value": "+$4.2M ($2.8M at-renewal + $1.4M in-quarter)", "source_workflow": "Expansion" },
+      { "stage": "contract", "metric": "Contraction ARR", "value": "-$0.6M (2 accounts)", "source_workflow": "Retention" },
+      { "stage": "churn", "metric": "Churned ARR", "value": "-$1.2M (5 accounts)", "source_workflow": "Churn" }
+    ],
+    "entities": [
+      { "name": "Account" },
+      { "name": "Contract" },
+      { "name": "Subscription" }
+    ],
+    "dimensions": [
+      {
+        "name": "segment",
+        "values": ["enterprise", "mid_market", "smb"],
+        "breakdown": [
+          { "value": "enterprise", "arr": "$32.4M", "percent": "60%" },
+          { "value": "mid_market", "arr": "$16.2M", "percent": "30%" },
+          { "value": "smb", "arr": "$5.4M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "region",
+        "values": ["US", "IND", "UK", "AUS"],
+        "breakdown": [
+          { "value": "US", "arr": "$29.7M", "percent": "55%" },
+          { "value": "UK", "arr": "$10.8M", "percent": "20%" },
+          { "value": "IND", "arr": "$8.1M", "percent": "15%" },
+          { "value": "AUS", "arr": "$5.4M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "cohort",
+        "values": ["Weekly", "Monthly", "Quaterly"],
+        "breakdown": [
+          { "value": "Monthly", "arr": "$27.0M", "percent": "50%" },
+          { "value": "Quaterly", "arr": "$18.9M", "percent": "35%" },
+          { "value": "Weekly", "arr": "$8.1M", "percent": "15%" }
+        ]
+      },
+      {
+        "name": "plan",
+        "values": ["Free", "Custom", "Enterprice"],
+        "breakdown": [
+          { "value": "Enterprice", "arr": "$37.8M", "percent": "70%" },
+          { "value": "Custom", "arr": "$16.2M", "percent": "30%" },
+          { "value": "Free", "arr": "$0.0M", "percent": "0%" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "retention": {
+    "goal": {
+      "metric": "NRR",
+      "team": "Customer Success",
+      "owner": "VP CS",
+      "cadence": "90/60/30",
+      "current": "105%",
+      "grr_current": "96%",
+      "threshold": ">= 100%",
+      "status": "healthy"
+    },
+    "drivers": [
+      { "metric": "Renewal Rate", "value": "85% ($10.2M of $12.0M book, 27 of 34 accounts)" },
+      { "metric": "At_risk ARR", "value": "$2.2M (incl. Meridian $0.8M)" },
+      { "metric": "Account Health", "value": "27 accounts renewed healthy; 1 red flag (Meridian, health -40%)" },
+      { "metric": "Contracton_at_renewal", "value": "-$0.6M (2 accounts)" }
+    ],
+    "inputs": [
+      { "metric": "Renewal Book Due", "value": "$12.0M (34 accounts)" },
+      { "metric": "Renewed", "value": "$10.2M (27 accounts)" },
+      { "metric": "Contracted", "value": "-$0.6M (2 accounts)" },
+      { "metric": "Churned", "value": "-$1.2M (5 accounts)" },
+      { "metric": "Open", "value": "$0.8M (Meridian, decision pending Dec 16)" }
+    ],
+    "guardrails": [
+      { "metric": "NRR", "value": "105%", "threshold": ">= 100%", "status": "healthy" },
+      { "metric": "GRR Floor", "value": "96%", "threshold": "floor", "status": "healthy" },
+      { "metric": "Churn Concentration", "value": "$2.2M red (incl. Meridian $0.8M)", "threshold": "in band", "status": "watch" }
+    ],
+    "funnel": [
+      { "stage": "renewal_due", "metric": "Book due", "value": "$12.0M (34 accounts)" },
+      { "stage": "health_risk_check", "metric": "Health & risk assessed", "value": "1 red flag (Meridian, -40% health), 33 stable" },
+      { "stage": "contract_resign", "metric": "Contract / Re-sign outcomes", "value": "$10.2M renewed (27) + -$0.6M contracted (2)" },
+      { "stage": "invoice", "metric": "Invoiced", "value": "$10.2M" },
+      { "stage": "cash", "metric": "Renewed, cash pending", "value": "$10.2M (realization tracked under Cash workflow)" }
+    ],
+    "entities": [
+      { "name": "Account" },
+      { "name": "Contract" },
+      { "name": "Renewal" },
+      { "name": "Health Signal" }
+    ],
+    "dimensions": [
+      {
+        "name": "segment",
+        "values": ["enterprise", "mid_market", "smb"],
+        "breakdown": [
+          { "value": "enterprise", "book": "$7.20M", "percent": "60%" },
+          { "value": "mid_market", "book": "$3.60M", "percent": "30%" },
+          { "value": "smb", "book": "$1.20M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "account",
+        "values": ["Free", "Custom", "Enterprice"],
+        "breakdown": [
+          { "value": "Enterprice", "book": "$8.40M", "percent": "70%" },
+          { "value": "Custom", "book": "$3.60M", "percent": "30%" },
+          { "value": "Free", "book": "$0.0M", "percent": "0%" }
+        ]
+      },
+      {
+        "name": "cohort",
+        "values": ["Weekly", "Monthly", "Quaterly"],
+        "breakdown": [
+          { "value": "Monthly", "book": "$6.00M", "percent": "50%" },
+          { "value": "Quaterly", "book": "$4.20M", "percent": "35%" },
+          { "value": "Weekly", "book": "$1.80M", "percent": "15%" }
+        ]
+      },
+      {
+        "name": "health_tier",
+        "values": ["green", "yellow", "red"],
+        "breakdown": [
+          { "value": "green", "book": "$7.84M", "percent": "65.3%" },
+          { "value": "yellow", "book": "$1.96M", "percent": "16.3%" },
+          { "value": "red", "book": "$2.20M", "percent": "18.3%" }
+        ]
+      },
+      {
+        "name": "renewal_window",
+        "values": ["90", "60", "30"],
+        "breakdown": [
+          { "value": "90", "book": "$5.00M", "percent": "41.7%" },
+          { "value": "60", "book": "$4.00M", "percent": "33.3%" },
+          { "value": "30", "book": "$3.00M", "percent": "25.0%" }
+        ]
+      }
+    ]
+  }
+}

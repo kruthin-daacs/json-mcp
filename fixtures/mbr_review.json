@@ -1,0 +1,128 @@
+{
+  "skill_id": "mbr_review",
+  "name": "Monthly Business Review",
+  "description": "The Atlas agent's review skill — deterministic composition of a monthly review, OKR top-down",
+  "cadence": "monthly",
+  "objective": {
+    "step": 1,
+    "metric": "ARR",
+    "target": "$60M",
+    "heading": "Is the business on plan?"
+  },
+  "key_results": [
+    { "id": "kr_finance", "step": 2, "heading": "Cash flow — did it collect?", "altitude": "Finance" },
+    { "id": "kr_revenue", "step": 3, "heading": "Revenue — the levers (which moved?)", "altitude": "Revenue Levers" },
+    { "id": "kr_customer_journey", "step": 4, "heading": "Customer journey — where's the risk?", "altitude": "Flows" }
+  ],
+  "patterns": {
+    "comparison": "variance vs plan",
+    "movement": "delta across two cadences (XMR)",
+    "contribution": "decompose a total by dimension / lever / cohort",
+    "filter_score": "filter a cohort then score it",
+    "decompose": "trace a cross-altitude causal chain",
+    "decision": "commit a call; not a question — an output"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "section": "objective",
+      "heading_source": "Company + Cash objective",
+      "scenario": "monitoring",
+      "model_scope": ["revenue_accounting", "cash_accounting"],
+      "insight_pattern": "comparison",
+      "constructed_question": {
+        "primary": { "pattern": "comparison", "on": "ARR", "over": "this_month", "against": "plan", "resolves_to": "revenue_state" },
+        "secondary": { "pattern": "state", "on": "cash_collected", "resolves_to": "cash_state" }
+      },
+      "reads": [
+        { "workflow": "revenue_accounting", "fields": ["goal.current", "goal.target", "goal.net_new_qtd", "goal.status"] },
+        { "workflow": "cash_accounting", "fields": ["goal.collected", "goal.billed"] }
+      ],
+      "emits_template": "ARR {net_new_qtd_signed} ({status} {target}) cash {collected}/{billed}"
+    },
+    {
+      "step": 2,
+      "section": "kr_finance",
+      "heading_source": "Cash objective",
+      "scenario": "monitoring",
+      "model_scope": ["cash_accounting"],
+      "insight_pattern": "movement",
+      "constructed_question": {
+        "primary": { "pattern": "movement", "on": "collected_vs_billed", "over": "month_vs_prior", "resolves_to": "cash_state" }
+      },
+      "reads": [
+        { "workflow": "cash_accounting", "fields": ["drivers[metric=Collections].value", "guardrails[metric=DSO].value", "guardrails[metric=AR Ageing].value"] }
+      ],
+      "emits_template": "collected {collection_rate} DSO {dso} {ar_outstanding} late (timing)"
+    },
+    {
+      "step": 3,
+      "section": "kr_revenue",
+      "heading_source": "Company / levers objective",
+      "scenario": "monitoring diagnosing",
+      "model_scope": ["revenue_accounting", "new_business", "retention", "expansion", "churn_engine"],
+      "insight_pattern": "contribution",
+      "constructed_question": {
+        "primary": { "pattern": "contribution", "on": "ARR_movement", "over": "this_month", "by": "lever", "resolves_to": "revenue_state" }
+      },
+      "reads": [
+        { "workflow": "revenue_accounting", "fields": ["drivers[metric=New].value", "drivers[metric=Expansion].value", "drivers[metric=Churn].value"] },
+        { "workflow": "retention", "fields": ["goal.status"] }
+      ],
+      "emits_template": "New {new} Exp {expansion} Churn {churn} {flag_if_below_plan}"
+    },
+    {
+      "step": 4,
+      "section": "kr_customer_journey",
+      "heading_source": "CS / Retention objective",
+      "scenario": "diagnosing",
+      "model_scope": ["retention", "churn_engine"],
+      "insight_pattern": "filter_score",
+      "constructed_question": {
+        "primary": { "pattern": "filter_score", "on": "at_risk_ARR", "over": "this_month", "by": "cohort_x_health_tier", "resolves_to": "customer_state" }
+      },
+      "reads": [
+        { "workflow": "retention", "fields": ["dimensions[name=health_tier].breakdown[value=red]", "inputs[metric=Open]"] }
+      ],
+      "emits_template": "Red tier {red_tier_arr} {open_account_name} {open_amount} (health {health_delta})"
+    },
+    {
+      "step": 5,
+      "section": "causal_chain",
+      "heading_source": "the differentiator — not a fixed KR, cuts across altitudes",
+      "scenario": "diagnosing traverses feeds_up in reverse",
+      "model_scope": ["cash_accounting", "retention"],
+      "insight_pattern": "decompose",
+      "constructed_question": {
+        "primary": { "pattern": "decompose", "on": "the_anomaly", "across": ["cash", "revenue", "customer"], "resolves_to": "root_cause" }
+      },
+      "reads": [
+        { "workflow": "cash_accounting", "fields": ["guardrails[metric=AR Ageing].value"] },
+        { "workflow": "retention", "fields": ["guardrails[metric=Churn Concentration].value", "inputs[metric=Open]"] }
+      ],
+      "emits_template": "cash stuck retention below plan {open_account_name} at-risk ({open_deadline})"
+    },
+    {
+      "step": 6,
+      "section": "decision",
+      "heading_source": "decision / needs-me",
+      "scenario": "acting / sharing — not a question, an output",
+      "model_scope": ["retention"],
+      "insight_pattern": "decision",
+      "constructed_question": {
+        "primary": { "pattern": "decision", "action": "commit_the_renewal_save", "target": "{open_account_name}", "deadline": "{open_deadline}" }
+      },
+      "reads": [
+        { "workflow": "retention", "fields": ["inputs[metric=Open]"] }
+      ],
+      "emits_template": "review-object (composed MBR) + decision: save {open_account_name} before {open_deadline}"
+    }
+  ],
+  "assembly": {
+    "object": "review_object",
+    "order": [1, 2, 3, 4, 5, 6],
+    "heading_rule": "each step-group's heading is the objective/goal of that step's model scope, phrased as a review heading — never invented freely by the LLM",
+    "deterministic_elements": ["step order", "section", "model_scope", "insight_pattern", "constructed_question shape", "heading_source"],
+    "runtime_elements": ["reads (live values pulled from semantic model JSONs)", "emits (filled template)", "step 6 decision text"]
+  }
+}

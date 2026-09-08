@@ -1,0 +1,83 @@
+{
+  "cash_accounting": {
+    "goal": {
+      "metric": "Cash Collected",
+      "team": "Finance",
+      "owner": "CFO",
+      "cadence": "monthly",
+      "booked": "$18.6M",
+      "billed": "$17.4M",
+      "collected": "$15.2M",
+      "outstanding_ar": "$2.2M",
+      "collection_rate": "87%",
+      "status": "on track (outstanding AR is timing, not risk)"
+    },
+    "drivers": [
+      { "metric": "Billing timing", "value": "46 days avg (DSO)" },
+      { "metric": "Payment Terms", "value": "Net 30" },
+      { "metric": "Collections", "value": "$15.2M collected of $17.4M billed (87%)" }
+    ],
+    "inputs": [
+      { "metric": "Booked", "value": "$18.6M" },
+      { "metric": "Billed", "value": "$17.4M" },
+      { "metric": "Collected", "value": "$15.2M" }
+    ],
+    "guardrails": [
+      { "metric": "DSO", "value": "46 days", "threshold": "40-48 days", "status": "in band" },
+      { "metric": "AR Ageing", "value": "$2.2M outstanding (Northwind $1.3M/18d, Vantage $0.9M/15d)", "threshold": "watch beyond 30d", "status": "timing, not risk" },
+      { "metric": "Booking-to-Revenue Ratio", "value": "1.44x", "status": "informational" }
+    ],
+    "funnel": [
+      { "stage": "book", "metric": "Booked revenue", "value": "$18.6M" },
+      { "stage": "bill", "metric": "Billed", "value": "$17.4M" },
+      { "stage": "collect", "metric": "Collected", "value": "$15.2M" },
+      { "stage": "reconcile", "metric": "Outstanding AR reconciled", "value": "$2.2M (Northwind $1.3M/18d + Vantage $0.9M/15d)" }
+    ],
+    "entities": [
+      { "name": "Invoice" },
+      { "name": "Payment" },
+      { "name": "Contract" },
+      { "name": "Receivables" },
+      { "name": "Deferred Revenue" }
+    ],
+    "dimensions": [
+      {
+        "name": "segment",
+        "values": ["enterprise", "mid_market", "smb"],
+        "breakdown": [
+          { "value": "enterprise", "billed": "$10.44M", "percent": "60%" },
+          { "value": "mid_market", "billed": "$5.22M", "percent": "30%" },
+          { "value": "smb", "billed": "$1.74M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "account",
+        "values": ["Free", "Custom", "Enterprice"],
+        "breakdown": [
+          { "value": "Enterprice", "billed": "$12.18M", "percent": "70%" },
+          { "value": "Custom", "billed": "$5.22M", "percent": "30%" },
+          { "value": "Free", "billed": "$0.0M", "percent": "0%" }
+        ]
+      },
+      {
+        "name": "period",
+        "values": ["week", "month", "quarter"],
+        "breakdown": [
+          { "value": "week", "billed": "$1.34M", "note": "QTD/13 weeks" },
+          { "value": "month", "billed": "$5.80M", "note": "QTD/3 months" },
+          { "value": "quarter", "billed": "$17.40M", "note": "actual QTD total" }
+        ]
+      },
+      {
+        "name": "ageing_bucket",
+        "values": ["0-30", "31-60", "61-90", "90+"],
+        "breakdown": [
+          { "value": "0-30", "ar": "$2.2M", "percent": "100%" },
+          { "value": "31-60", "ar": "$0.0M", "percent": "0%" },
+          { "value": "61-90", "ar": "$0.0M", "percent": "0%" },
+          { "value": "90+", "ar": "$0.0M", "percent": "0%" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "DataOrbit business operating model",
+  "description": "How it runs Altitudes each at its own cadence",
+  "altitudes": [
+    {
+      "level": 1,
+      "name": "Finance",
+      "type": "strategic",
+      "owner": "CFO",
+      "workflows": [
+        {
+          "name": "Revenue",
+          "formula": "Revenue = New + Retention + Expansion - Churn",
+          "job": "roll up the equation is revenue on plan?"
+        },
+        {
+          "name": "Cash",
+          "formula": "Cash = Cash Collected (Billed)",
+          "job": "roll up the equation is revenue on plan?"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "name": "Revenue Levers",
+      "type": "the bowtie",
+      "owner": "VP owners",
+      "workflows": [
+        {
+          "name": "New Revenue",
+          "description": "win new logos",
+          "owner": "VP Sales",
+          "cadence": "weekly",
+          "job": "land new business",
+          "flow_ref": "Lead-to-Cash"
+        },
+        {
+          "name": "Retention Revenue",
+          "description": "renew the base",
+          "owner": "VP CS",
+          "cadence": "90/60/30",
+          "job": "protect the base before renewal",
+          "flow_ref": "Renewal-to-Cash"
+        },
+        {
+          "name": "Expansion Revenue",
+          "description": "grow accounts",
+          "owner": "VP CS / Sales",
+          "cadence": "quarterly",
+          "job": "grow existing accounts",
+          "flow_ref": "Quote-to-Cash"
+        },
+        {
+          "name": "Churn Revenue",
+          "description": "revenue lost",
+          "owner": "VP CS",
+          "cadence": "continuous",
+          "job": "stop the leak",
+          "flow_ref": "Risk-to-Resolution"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "name": "Flows",
+      "type": "operational",
+      "owner": "RevOps",
+      "note": "each flow runs under its lever",
+      "flows": [
+        {
+          "name": "Lead-to-Cash",
+          "under_workflow": "New Revenue",
+          "owner": "VP Sales",
+          "steps": [
+            { "step 1": "Lead" },
+            { "step 2": "Qualify" },
+            { "step 3": "Configure & Quote" },
+            { "step 4": "Contract" },
+            { "step 5": "Provision" },
+            { "step 6": "Invoice" },
+            { "step 7": "Cash" }
+          ]
+        },
+        {
+          "name": "Renewal-to-Cash",
+          "under_workflow": "Retention Revenue",
+          "owner": "VP CS",
+          "steps": [
+            { "step 1": "Renewal due" },
+            { "step 2": "Health & risk check" },
+            { "step 3": "Contract / Re-sign" },
+            { "step 4": "Invoice" },
+            { "step 5": "Cash" }
+          ]
+        },
+        {
+          "name": "Quote-to-Cash",
+          "under_workflow": "Expansion Revenue",
+          "owner": "VP CS / Sales",
+          "steps": [
+            { "step 1": "Expansion signal" },
+            { "step 2": "Configure & Quote" },
+            { "step 3": "Contract" },
+            { "step 4": "Provision" },
+            { "step 5": "Invoice" },
+            { "step 6": "Cash" }
+          ]
+        },
+        {
+          "name": "Risk-to-Resolution",
+          "under_workflow": "Churn Revenue",
+          "owner": "VP CS",
+          "steps": [
+            { "step 1": "Risk signal" },
+            { "step 2": "Intervene" },
+            { "step 3": "Save / Downgrade" },
+            { "step 4": "Offboard / Credit" }
+          ]
+        }
+      ]
+    }
+  ]
+}

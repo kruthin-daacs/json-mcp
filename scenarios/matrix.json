@@ -1,0 +1,14 @@
+[
+  { "id": "A1", "prompt": "monthly business review", "expected_scope": "atlas", "expected_output": "review-object" },
+  { "id": "A2", "prompt": "weekly retention review", "expected_scope": "atlas", "expected_output": "review-object" },
+  { "id": "A3", "prompt": "why is cash stuck?", "expected_scope": "atlas", "expected_output": "diagnosis-trace" },
+  { "id": "C1", "prompt": "show retention this month", "expected_scope": "canvas", "expected_output": "live-canvas" },
+  { "id": "C2", "prompt": "show cash this month", "expected_scope": "canvas", "expected_output": "live-canvas" },
+  { "id": "C3", "prompt": "show pipeline this week", "expected_scope": "canvas", "expected_output": "live-canvas" },
+  { "id": "T1", "prompt": "why is mid-market churning?", "expected_scope": "thread", "expected_output": "diagnosis-trace" },
+  { "id": "T2", "prompt": "why is the $2.2M stuck?", "expected_scope": "thread", "expected_output": "diagnosis-trace" },
+  { "id": "T3", "prompt": "which save-plays work?", "expected_scope": "thread", "expected_output": "diagnosis-trace" },
+  { "id": "E1", "prompt": "how does this compare to Sales?", "expected_scope": "atlas", "expected_output": "exception-route" },
+  { "id": "E2", "prompt": "is this company-wide?", "expected_scope": "atlas", "expected_output": "exception-route" },
+  { "id": "E3", "prompt": "how was this computed?", "expected_scope": "audit", "expected_output": "audit-trail" }
+]

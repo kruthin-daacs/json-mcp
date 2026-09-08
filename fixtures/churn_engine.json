@@ -1,0 +1,90 @@
+{
+  "churn_engine": {
+    "goal": {
+      "metric": "Minimised Lost ARR",
+      "team": "Customer Success",
+      "owner": "VP CS",
+      "cadence": "continuous",
+      "current": "-$1.8M (Churn -$1.2M + Contraction -$0.6M)",
+      "at_risk_open": "$0.8M (Meridian, pending decision Dec 16)",
+      "status": "within guardrail (GRR 96%)"
+    },
+    "drivers": [
+      { "metric": "At-Risk ARR", "value": "$1.8M resolved + $0.8M open (Meridian)" },
+      { "metric": "Save Rate", "value": "28.6% (2 of 7 at-risk accounts saved via downgrade)" },
+      { "metric": "Churn Concentration", "value": "$1.2M across 5 accounts" }
+    ],
+    "inputs": [
+      { "metric": "Risk Signal", "value": "7 accounts flagged, $2.6M ARR at risk" },
+      { "metric": "Intervene", "value": "7 of 7 accounts intervened" },
+      { "metric": "Save/Downgrade", "value": "2 accounts, -$0.6M ARR retained-but-reduced" },
+      { "metric": "Offboard/Credit", "value": "5 accounts, -$1.2M ARR fully lost" }
+    ],
+    "guardrails": [
+      { "metric": "GRR Floor", "value": "96%", "threshold": "floor", "status": "healthy" },
+      { "metric": "Churn Concentration", "value": "$1.2M in 5 accounts", "threshold": "in band", "status": "watch" },
+      { "metric": "Save Rate", "value": "28.6%", "threshold": ">= 40%", "status": "behind" }
+    ],
+    "funnel": [
+      { "stage": "risk_signal", "metric": "Accounts flagged", "value": "7 accounts, $2.6M ARR" },
+      { "stage": "intervene", "metric": "Accounts intervened", "value": "7 accounts" },
+      { "stage": "save_downgrade", "metric": "Saved via downgrade", "value": "2 accounts, -$0.6M ARR" },
+      { "stage": "offboard_credit", "metric": "Offboarded / credited", "value": "5 accounts, -$1.2M ARR" }
+    ],
+    "entities": [
+      { "name": "Account" },
+      { "name": "Risk Signal" },
+      { "name": "Save Play" },
+      { "name": "Offboard" }
+    ],
+    "dimensions": [
+      {
+        "name": "segment",
+        "values": ["enterprise", "mid_market", "smb"],
+        "breakdown": [
+          { "value": "enterprise", "arr": "-$1.08M", "percent": "60%" },
+          { "value": "mid_market", "arr": "-$0.54M", "percent": "30%" },
+          { "value": "smb", "arr": "-$0.18M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "account",
+        "values": ["Free", "Custom", "Enterprice"],
+        "breakdown": [
+          { "value": "Enterprice", "arr": "-$1.26M", "percent": "70%" },
+          { "value": "Custom", "arr": "-$0.54M", "percent": "30%" },
+          { "value": "Free", "arr": "$0.0M", "percent": "0%" }
+        ]
+      },
+      {
+        "name": "cohort",
+        "values": ["Weekly", "Monthly", "Quaterly"],
+        "breakdown": [
+          { "value": "Monthly", "arr": "-$0.90M", "percent": "50%" },
+          { "value": "Quaterly", "arr": "-$0.63M", "percent": "35%" },
+          { "value": "Weekly", "arr": "-$0.27M", "percent": "15%" }
+        ]
+      },
+      {
+        "name": "churn_reason",
+        "values": ["pricing_budget", "product_fit", "competitor_loss", "champion_turnover", "consolidation_ma"],
+        "breakdown": [
+          { "value": "pricing_budget", "arr": "-$0.54M", "percent": "30%" },
+          { "value": "product_fit", "arr": "-$0.45M", "percent": "25%" },
+          { "value": "champion_turnover", "arr": "-$0.36M", "percent": "20%" },
+          { "value": "competitor_loss", "arr": "-$0.27M", "percent": "15%" },
+          { "value": "consolidation_ma", "arr": "-$0.18M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "health_tier",
+        "values": ["green", "yellow", "red"],
+        "breakdown": [
+          { "value": "red", "arr": "-$1.8M", "percent": "100%" },
+          { "value": "yellow", "arr": "$0.0M", "percent": "0%" },
+          { "value": "green", "arr": "$0.0M", "percent": "0%" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "new_business": {
+    "goal": {
+      "metric": "New ACV",
+      "team": "Sales",
+      "owner": "VP Sales",
+      "cadence": "weekly",
+      "current": "$3.6M",
+      "target": "$5.5M",
+      "percent_to_target": "65%",
+      "status": "behind"
+    },
+    "drivers": [
+      { "metric": "Pipeline Coverage", "value": "1.1x (thin)" },
+      { "metric": "Win Rate", "value": "28%" },
+      { "metric": "Avg ACV", "value": "$327K" }
+    ],
+    "inputs": [
+      { "metric": "Qualified", "value": "$14.2M" },
+      { "metric": "Quote", "value": "$9.6M" },
+      { "metric": "Negotiate", "value": "$5.8M" },
+      { "metric": "Won", "value": "$3.6M" }
+    ],
+    "guardrails": [
+      { "metric": "Coverage Ratio", "value": "1.1x", "threshold": "2.0x", "status": "below target, thin" },
+      { "metric": "Discount Floor", "value": "~14% avg discount", "threshold": "12%", "status": "above floor, watch" },
+      { "metric": "Quota Attainment", "value": "65%", "threshold": "100%", "status": "behind" },
+      { "metric": "CAC Payback", "value": "~14 months", "threshold": "18 months", "status": "healthy" }
+    ],
+    "funnel": [
+      { "stage": "lead", "metric": "Leads sourced", "value": "~180 leads QTD" },
+      { "stage": "qualify", "metric": "Qualified pipeline", "value": "$14.2M" },
+      { "stage": "configure_quote", "metric": "Quote stage", "value": "$9.6M" },
+      { "stage": "contract", "metric": "Negotiate stage", "value": "$5.8M" },
+      { "stage": "provision", "metric": "Won, provisioning", "value": "$3.6M" },
+      { "stage": "invoice", "metric": "Invoiced", "value": "$3.6M" },
+      { "stage": "cash", "metric": "Booked, cash pending", "value": "$3.6M (realization tracked under Cash workflow)" }
+    ],
+    "entities": [
+      { "name": "Lead" },
+      { "name": "Opportunity" },
+      { "name": "Deal" },
+      { "name": "Account" },
+      { "name": "Contract" }
+    ],
+    "dimensions": [
+      {
+        "name": "segment",
+        "values": ["enterprise", "mid_market", "smb"],
+        "breakdown": [
+          { "value": "enterprise", "acv": "$2.16M", "percent": "60%" },
+          { "value": "mid_market", "acv": "$1.08M", "percent": "30%" },
+          { "value": "smb", "acv": "$0.36M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "region",
+        "values": ["USA", "IND", "UK", "AUS"],
+        "breakdown": [
+          { "value": "USA", "acv": "$1.98M", "percent": "55%" },
+          { "value": "UK", "acv": "$0.72M", "percent": "20%" },
+          { "value": "IND", "acv": "$0.54M", "percent": "15%" },
+          { "value": "AUS", "acv": "$0.36M", "percent": "10%" }
+        ]
+      },
+      {
+        "name": "team_rep",
+        "values": ["AE-ENT-01", "AE-ENT-02", "AE-MM-01", "AE-MM-02", "AE-SMB-01"],
+        "breakdown": [
+         { "value": "AE-ENT-01", "segment": "enterprise", "quota": "$1.80M", "closed": "$1.18M", "attainment": "65.6%" },
+         { "value": "AE-ENT-02", "segment": "enterprise", "quota": "$1.50M", "closed": "$0.98M", "attainment": "65.3%" },
+         { "value": "AE-MM-01", "segment": "mid_market", "quota": "$0.90M", "closed": "$0.59M", "attainment": "65.6%" },
+         { "value": "AE-MM-02", "segment": "mid_market", "quota": "$0.75M", "closed": "$0.49M", "attainment": "65.3%" },
+         { "value": "AE-SMB-01", "segment": "smb", "quota": "$0.55M", "closed": "$0.36M", "attainment": "65.5%" }
+        ]
+      },
+      {
+        "name": "product",
+        "values": ["connectors", "seats", "usage", "premium"],
+        "breakdown": [
+          { "value": "connectors", "acv": "$1.26M", "percent": "35%" },
+          { "value": "seats", "acv": "$1.08M", "percent": "30%" },
+          { "value": "usage", "acv": "$0.72M", "percent": "20%" },
+          { "value": "premium", "acv": "$0.54M", "percent": "15%" }
+        ]
+      },
+      {
+        "name": "cohort",
+        "values": ["Weekly", "Montly", "Quarterly"],
+        "breakdown": [
+          { "value": "Montly", "acv": "$1.80M", "percent": "50%" },
+          { "value": "Quarterly", "acv": "$1.26M", "percent": "35%" },
+          { "value": "Weekly", "acv": "$0.54M", "percent": "15%" }
+        ]
+      }
+    ]
+  }
+}
