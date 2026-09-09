@@ -26,11 +26,17 @@ If "Go ahead" is received without a pending plan in the current conversation, pr
 Present exactly what `vedha_get_review_plan` returns:
 
 - Review name and objective question.
-- Each ordered review question.
-- Semantic-model scope for each question, using user-facing workflow names.
+- For each ordered review question, present all four fields the tool returns, in this format:
+  ```
+  Question: <question>
+  Scope: <semantic-model scope, using user-facing workflow names>
+  Description: <description>
+  Visualization: <visualization>
+  ```
+  `description` and `visualization` come straight from the recipe's declarative `patterns` mapping (keyed by each step's `insight_pattern`) — never chosen or worded by the LLM at runtime.
 - A final approval request: `Approve this plan? Reply "Go ahead" to run it, or ask to see the semantic model.`
 
-The plan contains no query result, metric value, target, status, delta, finding, visualization, or recommendation. Do not use atomic insights during planning.
+The plan contains no query result, metric value, target, status, delta, or finding. `description` and `visualization` are structural labels about the analysis shape, not data — presenting them is not a query result. Do not use atomic insights during planning.
 
 ## Approved execution
 
@@ -47,7 +53,8 @@ If working in chat without filesystem access, return the valid review-object JSO
 
 - Start a metric block with `A1`, then immediately add `A2`, `A3`, or `A4`. Never narrate `A1` alone.
 - Use `A2` only for an internal target or threshold. Do not relabel a stage value such as billed cash as a target.
-- Use `D1` for a deliberate comparison between two measures, such as collected versus billed.
+- Use `D1` for a deliberate comparison between two measures, but only in the step whose own `constructed_question.primary` claims that comparison (e.g. billed-vs-collected belongs to the cash step, not the objective step that merely mentions cash in passing).
+- A step's `constructed_question.secondary` read (pattern `state`) is a one-line fact for that section's prose `answer` only. Never give it its own atom or visual, and never let it duplicate an atom or chart that belongs to a different step's `primary` pattern.
 - Use `E4` for an exact formula-level decomposition. For this fixture, current ARR is the additive identity `opening ARR + new + expansion + contraction + churn`.
 - Use `E5` only when both current and prior formula children are returned. It is a change bridge; current-level contribution is `E4`. The MBR recipe returns `measures.arr_bridge` specifically for the ARR waterfall.
 - Use `H1` only with ordered stage counts. Do not turn dollar values or prose funnel labels into stage counts.

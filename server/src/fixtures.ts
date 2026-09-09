@@ -28,6 +28,12 @@ export interface RecipeStep {
   emits_template: string;
 }
 
+export interface RecipePattern {
+  label: string;
+  description: string;
+  visualization: string;
+}
+
 export interface Recipe {
   skill_id: string;
   recipe_version: string;
@@ -36,7 +42,7 @@ export interface Recipe {
   cadence: string;
   objective: Record<string, unknown>;
   key_results: Array<Record<string, unknown>>;
-  patterns: Record<string, string>;
+  patterns: Record<string, RecipePattern>;
   steps: RecipeStep[];
   assembly: Record<string, unknown>;
 }

@@ -18,7 +18,8 @@
       "collected": { "value": 15.2, "display": "$15.2M", "unit": "usd_millions" },
       "outstanding_ar": { "value": 2.2, "display": "$2.2M", "unit": "usd_millions" },
       "collection_rate": { "value": 0.87, "display": "87%", "unit": "ratio" },
-      "dso": { "value": 46, "display": "46 days", "unit": "days" }
+      "dso": { "value": 46, "display": "46 days", "unit": "days" },
+      "collected_delta_vs_billed": { "value": -2.2, "display": "-$2.2M", "unit": "usd_millions", "basis": "collected minus billed (amount still outstanding this period)" }
     },
     "drivers": [
       { "metric": "Billing timing", "value": "46 days avg (DSO)" },

@@ -61,6 +61,42 @@ test("mbr_review recipe loads with six ordered steps", async () => {
   assert.ok(recipe.steps.every((step) => step.plan_question.length > 0));
 });
 
+test("every recipe pattern declares a label, description, and visualization", async () => {
+  const recipe = await loadRecipe("mbr_review");
+  const patterns = Object.values(recipe.patterns);
+  assert.equal(patterns.length, 6);
+  for (const pattern of patterns) {
+    assert.ok(pattern.label.length > 0);
+    assert.ok(pattern.description.length > 0);
+    assert.ok(pattern.visualization.length > 0);
+  }
+});
+
+test("every recipe step's insight_pattern resolves to a declared pattern", async () => {
+  const recipe = await loadRecipe("mbr_review");
+  for (const step of recipe.steps) {
+    assert.ok(recipe.patterns[step.insight_pattern], `step ${step.step}: unknown pattern '${step.insight_pattern}'`);
+  }
+});
+
+test("business map current-value and delta fields resolve to numbers for every canvas", async () => {
+  const fieldsByCanvas: Record<string, { currentValue: string; delta: string }> = {
+    revenue_accounting: { currentValue: "measures.current_arr", delta: "measures.net_new_qtd" },
+    cash_accounting: { currentValue: "measures.collected", delta: "measures.collected_delta_vs_billed" },
+    new_business: { currentValue: "measures.current_acv", delta: "measures.acv_delta_vs_target" },
+    retention: { currentValue: "measures.nrr", delta: "measures.nrr_delta_vs_threshold" },
+    expansion: { currentValue: "measures.expansion_arr", delta: "measures.expansion_arr_delta_vs_floor" },
+    churn_engine: { currentValue: "measures.lost_arr", delta: "measures.lost_arr_open_exposure" }
+  };
+  for (const [canvasId, fields] of Object.entries(fieldsByCanvas)) {
+    const canvas = await loadCanvas(canvasId);
+    const currentValue = resolvePath(canvas, `${fields.currentValue}.value`);
+    const delta = resolvePath(canvas, `${fields.delta}.value`);
+    assert.equal(typeof currentValue, "number", `${canvasId}: ${fields.currentValue}.value`);
+    assert.equal(typeof delta, "number", `${canvasId}: ${fields.delta}.value`);
+  }
+});
+
 test("semantic model projection contains labels and no query values", async () => {
   const models = await loadSemanticModels(["retention"]);
   assert.deepEqual(Object.keys(models[0]), ["canvas_id", "workflow", "entity", "activity", "goal_metric", "dimensions", "input_measures"]);

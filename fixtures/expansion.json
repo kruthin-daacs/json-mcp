@@ -12,7 +12,9 @@
     "measures": {
       "expansion_arr": { "value": 4.2, "display": "+$4.2M", "unit": "usd_millions" },
       "at_renewal": { "value": 2.8, "display": "$2.8M", "unit": "usd_millions" },
-      "in_quarter": { "value": 1.4, "display": "$1.4M", "unit": "usd_millions" }
+      "in_quarter": { "value": 1.4, "display": "$1.4M", "unit": "usd_millions" },
+      "expansion_arr_floor": { "value": 0, "display": "$0", "unit": "usd_millions", "basis": "fixture's own 'Net Expansion Positive > $0' guardrail floor" },
+      "expansion_arr_delta_vs_floor": { "value": 4.2, "display": "+$4.2M", "unit": "usd_millions", "basis": "expansion_arr minus expansion_arr_floor" }
     },
     "drivers": [
       { "metric": "Expansion_rate", "value": "9% of opening ARR ($4.2M / $48.0M)" },

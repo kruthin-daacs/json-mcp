@@ -16,12 +16,36 @@
     { "id": "kr_customer_journey", "step": 4, "heading": "Customer journey — where's the risk?", "altitude": "Flows" }
   ],
   "patterns": {
-    "comparison": "variance vs plan",
-    "movement": "delta across two cadences (XMR)",
-    "contribution": "decompose a total by dimension / lever / cohort",
-    "filter_score": "filter a cohort then score it",
-    "decompose": "trace a cross-altitude causal chain",
-    "decision": "commit a call; not a question — an output"
+    "comparison": {
+      "label": "Comparison",
+      "description": "Compares the current actual against a plan or target for the same metric.",
+      "visualization": "Bar Chart"
+    },
+    "movement": {
+      "label": "Movement",
+      "description": "Shows how a metric changes across two or more cadences over time.",
+      "visualization": "Line Chart"
+    },
+    "contribution": {
+      "label": "Contribution",
+      "description": "Decomposes a total into the parts (levers, dimensions, cohorts) that drove it.",
+      "visualization": "Contribution Bar Chart"
+    },
+    "filter_score": {
+      "label": "Filter & Score",
+      "description": "Filters a cohort down to a subset and scores/ranks each member.",
+      "visualization": "Table"
+    },
+    "decompose": {
+      "label": "Decompose",
+      "description": "Traces a cross-altitude causal chain from an outcome back to its contributing factors.",
+      "visualization": "Waterfall Chart"
+    },
+    "decision": {
+      "label": "Decision",
+      "description": "States the action/call to make; it is an output, not an analysis of data.",
+      "visualization": "Decision Callout"
+    }
   },
   "steps": [
     {

@@ -15,7 +15,8 @@
       "target_acv": { "value": 5.5, "display": "$5.5M", "unit": "usd_millions" },
       "percent_to_target": { "value": 0.65, "display": "65%", "unit": "ratio" },
       "pipeline_coverage": { "value": 1.1, "display": "1.1x", "unit": "multiple" },
-      "win_rate": { "value": 0.28, "display": "28%", "unit": "ratio" }
+      "win_rate": { "value": 0.28, "display": "28%", "unit": "ratio" },
+      "acv_delta_vs_target": { "value": -1.9, "display": "-$1.9M", "unit": "usd_millions", "basis": "current_acv minus target_acv (attainment gap)" }
     },
     "drivers": [
       { "metric": "Pipeline Coverage", "value": "1.1x (thin)" },
@@ -68,17 +69,6 @@
           { "value": "UK", "acv": "$0.72M", "percent": "20%" },
           { "value": "IND", "acv": "$0.54M", "percent": "15%" },
           { "value": "AUS", "acv": "$0.36M", "percent": "10%" }
-        ]
-      },
-      {
-        "name": "team_rep",
-        "values": ["AE-ENT-01", "AE-ENT-02", "AE-MM-01", "AE-MM-02", "AE-SMB-01"],
-        "breakdown": [
-         { "value": "AE-ENT-01", "segment": "enterprise", "quota": "$1.80M", "closed": "$1.18M", "attainment": "65.6%" },
-         { "value": "AE-ENT-02", "segment": "enterprise", "quota": "$1.50M", "closed": "$0.98M", "attainment": "65.3%" },
-         { "value": "AE-MM-01", "segment": "mid_market", "quota": "$0.90M", "closed": "$0.59M", "attainment": "65.6%" },
-         { "value": "AE-MM-02", "segment": "mid_market", "quota": "$0.75M", "closed": "$0.49M", "attainment": "65.3%" },
-         { "value": "AE-SMB-01", "segment": "smb", "quota": "$0.55M", "closed": "$0.36M", "attainment": "65.5%" }
         ]
       },
       {

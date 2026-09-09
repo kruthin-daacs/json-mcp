@@ -12,6 +12,8 @@
     },
     "measures": {
       "nrr": { "value": 1.05, "display": "105%", "unit": "ratio" },
+      "nrr_threshold": { "value": 1.00, "display": "100%", "unit": "ratio", "basis": "fixture's own '>= 100%' retention threshold (goal.threshold)" },
+      "nrr_delta_vs_threshold": { "value": 0.05, "display": "+5%", "unit": "ratio", "basis": "nrr minus nrr_threshold" },
       "grr": { "value": 0.96, "display": "96%", "unit": "ratio" },
       "renewal_book": { "value": 12.0, "display": "$12.0M", "unit": "usd_millions" },
       "renewed_arr": { "value": 10.2, "display": "$10.2M", "unit": "usd_millions" },

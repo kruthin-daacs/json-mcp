@@ -99,11 +99,16 @@ function createServer(): McpServer {
         const order = (recipe.assembly.order as number[]) ?? recipe.steps.map((item) => item.step);
         const steps = [...recipe.steps]
           .sort((a, b) => order.indexOf(a.step) - order.indexOf(b.step))
-          .map((item) => ({
-            step: item.step,
-            question: item.plan_question,
-            scope: item.model_scope
-          }));
+          .map((item) => {
+            const pattern = recipe.patterns[item.insight_pattern];
+            return {
+              step: item.step,
+              question: item.plan_question,
+              scope: item.model_scope,
+              description: pattern?.description,
+              visualization: pattern?.visualization
+            };
+          });
         const semanticModels = [...new Set(steps.flatMap((item) => item.scope))];
         const resultId = `plan:${recipe_id}:${recipe.recipe_version}`;
         const output = {
