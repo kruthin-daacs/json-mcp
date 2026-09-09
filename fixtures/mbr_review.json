@@ -1,7 +1,8 @@
 {
   "skill_id": "mbr_review",
+  "recipe_version": "1.0",
   "name": "Monthly Business Review",
-  "description": "The Atlas agent's review skill — deterministic composition of a monthly review, OKR top-down",
+  "description": "Atlas review recipe for deterministic, top-down Monthly Business Review composition",
   "cadence": "monthly",
   "objective": {
     "step": 1,
@@ -35,8 +36,8 @@
         "secondary": { "pattern": "state", "on": "cash_collected", "resolves_to": "cash_state" }
       },
       "reads": [
-        { "workflow": "revenue_accounting", "fields": ["goal.current", "goal.target", "goal.net_new_qtd", "goal.status"] },
-        { "workflow": "cash_accounting", "fields": ["goal.collected", "goal.billed"] }
+        { "workflow": "revenue_accounting", "fields": ["measures.current_arr", "measures.target_arr", "measures.net_new_qtd", "goal.status"] },
+        { "workflow": "cash_accounting", "fields": ["measures.collected", "measures.billed"] }
       ],
       "emits_template": "ARR {net_new_qtd_signed} ({status} {target}) cash {collected}/{billed}"
     },
@@ -51,7 +52,7 @@
         "primary": { "pattern": "movement", "on": "collected_vs_billed", "over": "month_vs_prior", "resolves_to": "cash_state" }
       },
       "reads": [
-        { "workflow": "cash_accounting", "fields": ["drivers[metric=Collections].value", "guardrails[metric=DSO].value", "guardrails[metric=AR Ageing].value"] }
+        { "workflow": "cash_accounting", "fields": ["measures.collection_rate", "measures.dso", "measures.outstanding_ar"] }
       ],
       "emits_template": "collected {collection_rate} DSO {dso} {ar_outstanding} late (timing)"
     },
@@ -66,8 +67,8 @@
         "primary": { "pattern": "contribution", "on": "ARR_movement", "over": "this_month", "by": "lever", "resolves_to": "revenue_state" }
       },
       "reads": [
-        { "workflow": "revenue_accounting", "fields": ["drivers[metric=New].value", "drivers[metric=Expansion].value", "drivers[metric=Churn].value"] },
-        { "workflow": "retention", "fields": ["goal.status"] }
+        { "workflow": "revenue_accounting", "fields": ["measures.opening_arr", "measures.current_arr", "measures.new_arr", "measures.expansion_arr", "measures.contraction_arr", "measures.churn_arr", "measures.arr_bridge"] },
+        { "workflow": "retention", "fields": ["measures.nrr", "goal.status"] }
       ],
       "emits_template": "New {new} Exp {expansion} Churn {churn} {flag_if_below_plan}"
     },
@@ -82,7 +83,7 @@
         "primary": { "pattern": "filter_score", "on": "at_risk_ARR", "over": "this_month", "by": "cohort_x_health_tier", "resolves_to": "customer_state" }
       },
       "reads": [
-        { "workflow": "retention", "fields": ["dimensions[name=health_tier].breakdown[value=red]", "inputs[metric=Open]"] }
+        { "workflow": "retention", "fields": ["measures.red_tier_arr", "measures.open_renewal"] }
       ],
       "emits_template": "Red tier {red_tier_arr} {open_account_name} {open_amount} (health {health_delta})"
     },
@@ -97,10 +98,10 @@
         "primary": { "pattern": "decompose", "on": "the_anomaly", "across": ["cash", "revenue", "customer"], "resolves_to": "root_cause" }
       },
       "reads": [
-        { "workflow": "cash_accounting", "fields": ["guardrails[metric=AR Ageing].value"] },
-        { "workflow": "retention", "fields": ["guardrails[metric=Churn Concentration].value", "inputs[metric=Open]"] }
+        { "workflow": "cash_accounting", "fields": ["measures.outstanding_ar"] },
+        { "workflow": "retention", "fields": ["measures.red_tier_arr", "measures.open_renewal"] }
       ],
-      "emits_template": "cash stuck retention below plan {open_account_name} at-risk ({open_deadline})"
+      "emits_template": "cross-altitude cause not established: outstanding AR and retention risk concern different named accounts"
     },
     {
       "step": 6,
@@ -113,7 +114,7 @@
         "primary": { "pattern": "decision", "action": "commit_the_renewal_save", "target": "{open_account_name}", "deadline": "{open_deadline}" }
       },
       "reads": [
-        { "workflow": "retention", "fields": ["inputs[metric=Open]"] }
+        { "workflow": "retention", "fields": ["measures.open_renewal"] }
       ],
       "emits_template": "review-object (composed MBR) + decision: save {open_account_name} before {open_deadline}"
     }

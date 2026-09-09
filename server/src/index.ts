@@ -29,7 +29,7 @@ function rememberAudit(resultId: string, route: string[], input: Record<string, 
 }
 
 function createServer(): McpServer {
-  const server = new McpServer({ name: "vedha-json-mcp", version: "0.1.0" });
+  const server = new McpServer({ name: "vedha-json-mcp", version: "0.2.0" });
   const canvasIdEnum = z.enum(canvasIds() as [string, ...string[]]);
 
   server.registerTool(
@@ -40,7 +40,17 @@ function createServer(): McpServer {
       outputSchema: jsonRecord,
       annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false }
     },
-    async () => resultBlock(await loadCatalog())
+    async () => {
+      const resultId = "context:dataorbit:v1";
+      const output = {
+        schema_version: "1.0",
+        result_id: resultId,
+        scope: "atlas",
+        ...(await loadCatalog())
+      };
+      rememberAudit(resultId, ["atlas", "catalog"], {});
+      return resultBlock(output);
+    }
   );
 
   server.registerTool(
@@ -65,6 +75,7 @@ function createServer(): McpServer {
           result_id: resultId,
           scope: "canvas",
           canvas_id,
+          measures: canvas.measures,
           goal: canvas.goal,
           drivers: canvas.drivers,
           inputs: canvas.inputs,
@@ -122,17 +133,20 @@ function createServer(): McpServer {
     "vedha_get_atlas_review",
     {
       title: "Run a Vedha Atlas review recipe",
-      description: "Deterministically compose an Atlas-level review by walking a named recipe's steps, resolving each step's declared field reads against the named canvases. Use for cross-canvas/cross-altitude reviews (e.g. the Monthly Business Review). Fill each step's emits_template from the returned resolved values only — never invent a value not present in `resolved`.",
+      description: "Deterministically execute an Atlas-level recipe by resolving each declared field read against the named canvases. Use for cross-canvas reviews such as the Monthly Business Review. This tool supplies facts and review structure; the MBR presentation skill selects atomic insights and renders them.",
       inputSchema: z.object({
-        skill_id: z.literal("mbr_review"),
+        recipe_id: z.literal("mbr_review").optional(),
+        skill_id: z.literal("mbr_review").optional().describe("Deprecated alias for recipe_id."),
         step: z.number().int().min(1).max(6).optional()
       }),
       outputSchema: jsonRecord,
       annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false }
     },
-    async ({ skill_id, step }) => {
+    async ({ recipe_id, skill_id, step }) => {
       try {
-        const recipe = await loadRecipe(skill_id);
+        const recipeId = recipe_id ?? skill_id;
+        if (!recipeId) throw new Error("recipe_id is required.");
+        const recipe = await loadRecipe(recipeId);
         const order = (recipe.assembly.order as number[]) ?? recipe.steps.map((s) => s.step);
         const stepsToRun = recipe.steps
           .filter((s) => !step || s.step === step)
@@ -163,19 +177,25 @@ function createServer(): McpServer {
           });
         }
 
-        const resultId = `atlas:${skill_id}:${step ?? "all"}`;
+        const resultId = `atlas:${recipeId}:${step ?? "all"}`;
         const output = {
           schema_version: "1.0",
           result_id: resultId,
           scope: "atlas",
-          skill_id,
+          recipe_id: recipeId,
+          recipe_version: recipe.recipe_version,
+          recipe_name: recipe.name,
+          cadence: recipe.cadence,
+          objective: recipe.objective,
+          key_results: recipe.key_results,
           object: recipe.assembly.object,
+          assembly: recipe.assembly,
           steps: resolvedSteps
         };
         rememberAudit(
           resultId,
-          ["atlas", skill_id, ...stepsToRun.flatMap((s) => s.reads.map((r) => r.workflow))],
-          { skill_id, step }
+          ["atlas", recipeId, ...stepsToRun.flatMap((s) => s.reads.map((r) => r.workflow))],
+          { recipe_id: recipeId, step }
         );
         return resultBlock(output);
       } catch (error) {

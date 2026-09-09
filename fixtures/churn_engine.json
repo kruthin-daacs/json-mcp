@@ -9,6 +9,14 @@
       "at_risk_open": "$0.8M (Meridian, pending decision Dec 16)",
       "status": "within guardrail (GRR 96%)"
     },
+    "measures": {
+      "lost_arr": { "value": -1.8, "display": "-$1.8M", "unit": "usd_millions" },
+      "churn_arr": { "value": -1.2, "display": "-$1.2M", "unit": "usd_millions" },
+      "contraction_arr": { "value": -0.6, "display": "-$0.6M", "unit": "usd_millions" },
+      "open_at_risk": { "value": 0.8, "display": "$0.8M", "unit": "usd_millions" },
+      "save_rate": { "value": 0.286, "display": "28.6%", "unit": "ratio" },
+      "save_rate_target": { "value": 0.40, "display": "40%", "unit": "ratio" }
+    },
     "drivers": [
       { "metric": "At-Risk ARR", "value": "$1.8M resolved + $0.8M open (Meridian)" },
       { "metric": "Save Rate", "value": "28.6% (2 of 7 at-risk accounts saved via downgrade)" },

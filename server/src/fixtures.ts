@@ -5,6 +5,7 @@ export type Filters = Record<string, string | number | boolean>;
 
 export interface Canvas {
   canvas_id: string;
+  measures: Record<string, Record<string, unknown>>;
   goal: Record<string, unknown>;
   drivers: Array<Record<string, unknown>>;
   inputs: Array<Record<string, unknown>>;
@@ -28,6 +29,7 @@ export interface RecipeStep {
 
 export interface Recipe {
   skill_id: string;
+  recipe_version: string;
   name: string;
   description: string;
   cadence: string;

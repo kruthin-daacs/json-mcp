@@ -1,6 +1,13 @@
 # Vedha JSON MCP
 
-A fixture-backed, read-only MCP and Claude skill for discovering Vedha access patterns before connecting a production data backend.
+A fixture-backed, read-only MCP plus Claude skills for discovering Vedha access patterns before connecting a production data backend.
+
+## Architecture
+
+- `fixtures/mbr_review.json` is the **recipe**: six fixed review steps and declared semantic reads.
+- The `vedha_get_atlas_review` MCP tool is the **fact layer**: it resolves recipe reads from JSON fixtures and returns evidence IDs.
+- `skills/mbr-view/` is the **judgment layer**: it selects typed operations from Atomic Insight Library v4 and frames the review.
+- `scripts/render-report.mjs` is the **deterministic presentation layer**: it renders a validated review-object to HTML.
 
 ## Setup
 
@@ -24,12 +31,18 @@ Then ask Claude to run a scenario, for example:
 /vedha-playground:analyze Run scenario T1: why is mid-market churning?
 ```
 
+For an MBR demo:
+
+```text
+Create the Monthly Business Review for the current fixture period. Use the mbr_review recipe, apply the mbr-view skill, validate the review-object, and render the HTML. Do not read fixture files directly and do not invent missing evidence.
+```
+
 For Cowork, build the server first, then install this directory as a custom plugin in Claude Desktop. Local plugin MCP servers require the desktop application.
 
 ## Boundaries
 
 - `fixtures/` is source evidence and is read only through MCP tools.
-- `skills/` contains routing and visualization policy, not business facts.
+- `skills/analyze/` owns scope routing; `skills/mbr-view/` owns MBR judgment and visualization selection. Neither contains business facts.
 - `runs/` contains generated `request.json`, `result.json`, `audit.json`, and `index.html`.
 - The MCP accepts known canvas IDs and never accepts arbitrary filesystem paths.
 
@@ -38,6 +51,15 @@ For Cowork, build the server first, then install this directory as a custom plug
 - `vedha_list_contexts` — the DataOrbit altitude/workflow/flow tree
 - `vedha_get_canvas` — one workflow's semantic model (`revenue_accounting`, `cash_accounting`, `new_business`, `retention`, `expansion`, `churn_engine`)
 - `vedha_get_diagnosis` — guardrails + a dimension breakdown, within one canvas (Thread scope)
-- `vedha_get_atlas_review` — deterministically composes a cross-canvas review from the `mbr_review` recipe (Atlas scope)
+- `vedha_get_atlas_review` — deterministically executes the `mbr_review` recipe and returns resolved cross-canvas facts (Atlas scope)
 - `vedha_get_audit` — replay which canvases/route produced a prior result
+
+## MBR validation and rendering
+
+```bash
+npm run validate:review -- examples/mbr-review-object.json
+npm run render -- examples/mbr-review-object.json runs/A1/index.html
+```
+
+`schemas/review-object.schema.json` defines the six-section MBR contract. `schemas/atomic-insight.schema.json` defines the supported v4 atom payloads, and `scripts/lib/review-object.mjs` enforces ordering and computation invariants before HTML is written.
 # json-mcp

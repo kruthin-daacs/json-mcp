@@ -12,6 +12,14 @@
       "collection_rate": "87%",
       "status": "on track (outstanding AR is timing, not risk)"
     },
+    "measures": {
+      "booked": { "value": 18.6, "display": "$18.6M", "unit": "usd_millions" },
+      "billed": { "value": 17.4, "display": "$17.4M", "unit": "usd_millions" },
+      "collected": { "value": 15.2, "display": "$15.2M", "unit": "usd_millions" },
+      "outstanding_ar": { "value": 2.2, "display": "$2.2M", "unit": "usd_millions" },
+      "collection_rate": { "value": 0.87, "display": "87%", "unit": "ratio" },
+      "dso": { "value": 46, "display": "46 days", "unit": "days" }
+    },
     "drivers": [
       { "metric": "Billing timing", "value": "46 days avg (DSO)" },
       { "metric": "Payment Terms", "value": "Net 30" },

@@ -10,6 +10,22 @@
       "threshold": ">= 100%",
       "status": "healthy"
     },
+    "measures": {
+      "nrr": { "value": 1.05, "display": "105%", "unit": "ratio" },
+      "grr": { "value": 0.96, "display": "96%", "unit": "ratio" },
+      "renewal_book": { "value": 12.0, "display": "$12.0M", "unit": "usd_millions" },
+      "renewed_arr": { "value": 10.2, "display": "$10.2M", "unit": "usd_millions" },
+      "red_tier_arr": { "value": 2.2, "display": "$2.2M", "unit": "usd_millions" },
+      "open_renewal": {
+        "value": 0.8,
+        "display": "$0.8M",
+        "unit": "usd_millions",
+        "account": "Meridian",
+        "deadline": "Dec 16",
+        "health_delta": -0.40,
+        "health_delta_display": "-40%"
+      }
+    },
     "drivers": [
       { "metric": "Renewal Rate", "value": "85% ($10.2M of $12.0M book, 27 of 34 accounts)" },
       { "metric": "At_risk ARR", "value": "$2.2M (incl. Meridian $0.8M)" },

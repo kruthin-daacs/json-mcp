@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "output_type": "review-object",
+  "recipe_id": "mbr_review",
+  "recipe_version": "1.0",
+  "title": "DataOrbit Monthly Business Review",
+  "period": "Current fixture period",
+  "cadence": "monthly",
+  "executive_summary": "ARR is $54.0M against a $60.0M objective. Expansion is the largest positive movement, while $2.2M of the renewal book is red and Meridian requires a decision by Dec 16.",
+  "sections": [
+    {
+      "step": 1,
+      "section": "objective",
+      "heading": "Is the business on plan?",
+      "question": "Where does ARR stand against the company objective?",
+      "answer": "ARR is $54.0M, $6.0M below the $60.0M objective, with $6.0M net new quarter-to-date.",
+      "insights": [
+        {
+          "id": "arr-current",
+          "atom_id": "A1",
+          "title": "Current ARR",
+          "sentence": "DataOrbit ARR is $54.0M in the current fixture period.",
+          "evidence_result_ids": ["atlas:mbr_review:all"],
+          "value": 54.0,
+          "unit": "usd_millions",
+          "display": "$54.0M"
+        },
+        {
+          "id": "arr-target",
+          "atom_id": "A2",
+          "title": "ARR vs objective",
+          "sentence": "ARR is below target: $54.0M versus $60.0M, a $6.0M gap.",
+          "evidence_result_ids": ["atlas:mbr_review:all"],
+          "value": 54.0,
+          "target": 60.0,
+          "unit": "usd_millions",
+          "display": "$54.0M",
+          "target_display": "$60.0M",
+          "status": "below_target",
+          "gap": -6.0
+        }
+      ],
+      "callout": { "tone": "watch", "label": "Objective", "text": "90% attained; $6.0M remains to target." }
+    },
+    {
+      "step": 2,
+      "section": "kr_finance",
+      "heading": "Cash flow: did it collect?",
+      "question": "How much billed cash has been collected?",
+      "answer": "$15.2M of $17.4M billed has been collected, an 87% collection rate. DSO is 46 days and $2.2M remains outstanding.",
+      "insights": [
+        {
+          "id": "cash-collected-vs-billed",
+          "atom_id": "D1",
+          "title": "Collected vs billed",
+          "sentence": "Collected cash is $15.2M versus $17.4M billed.",
+          "evidence_result_ids": ["atlas:mbr_review:all"],
+          "value_a": 15.2,
+          "value_b": 17.4,
+          "label_a": "Collected",
+          "label_b": "Billed",
+          "unit": "usd_millions"
+        }
+      ],
+      "callout": { "tone": "healthy", "label": "Timing", "text": "DSO is 46 days; the fixture classifies outstanding AR as timing, not risk." }
+    },
+    {
+      "step": 3,
+      "section": "kr_revenue",
+      "heading": "Revenue levers: what moved ARR?",
+      "question": "Which formula drivers bridge opening ARR to current ARR?",
+      "answer": "Opening ARR of $48.0M moved to $54.0M through +$3.6M new, +$4.2M expansion, -$0.6M contraction, and -$1.2M churn.",
+      "insights": [
+        {
+          "id": "arr-change-bridge",
+          "atom_id": "E5",
+          "title": "ARR structural change bridge",
+          "sentence": "Expansion is the largest positive ARR driver at +$4.2M; churn is the largest drag at -$1.2M.",
+          "evidence_result_ids": ["atlas:mbr_review:all"],
+          "children_prior": { "Opening ARR": 48.0, "New": 0.0, "Expansion": 0.0, "Contraction": 0.0, "Churn": 0.0 },
+          "children": { "Opening ARR": 48.0, "New": 3.6, "Expansion": 4.2, "Contraction": -0.6, "Churn": -1.2 },
+          "operator": "+",
+          "change_bridge": { "Opening ARR": 0.0, "New": 3.6, "Expansion": 4.2, "Contraction": -0.6, "Churn": -1.2 },
+          "dominant_driver": "Expansion",
+          "unit": "usd_millions"
+        }
+      ],
+      "callout": { "tone": "healthy", "label": "Largest lift", "text": "Expansion contributed +$4.2M." }
+    },
+    {
+      "step": 4,
+      "section": "kr_customer_journey",
+      "heading": "Customer journey: where is the risk?",
+      "question": "How concentrated is the renewal risk?",
+      "answer": "$2.2M of the $12.0M renewal book is red. The remaining $9.8M is outside the red tier; Meridian is the named open renewal at $0.8M with health down 40%.",
+      "insights": [
+        {
+          "id": "renewal-risk-comparison",
+          "atom_id": "D1",
+          "title": "Red renewal ARR vs remainder",
+          "sentence": "Red renewal ARR is $2.2M versus $9.8M outside the red tier.",
+          "evidence_result_ids": ["atlas:mbr_review:all"],
+          "value_a": 2.2,
+          "value_b": 9.8,
+          "label_a": "Red tier",
+          "label_b": "Outside red tier",
+          "unit": "usd_millions"
+        }
+      ],
+      "callout": { "tone": "critical", "label": "Immediate attention", "text": "Meridian: $0.8M open, health -40%, decision due Dec 16." }
+    },
+    {
+      "step": 5,
+      "section": "causal_chain",
+      "heading": "Is the cross-altitude cause established?",
+      "question": "Does the cash evidence explain the retention risk?",
+      "answer": "No. The $2.2M outstanding AR is attributed to Northwind and Vantage, while the open retention decision is Meridian. The fixtures do not establish a causal path between them.",
+      "insights": [],
+      "callout": { "tone": "neutral", "label": "Evidence boundary", "text": "Cross-altitude cause is not established by the current fixture data." }
+    },
+    {
+      "step": 6,
+      "section": "decision",
+      "heading": "Decision requiring attention",
+      "question": "What needs an executive decision now?",
+      "answer": "Resolve the Meridian renewal-save decision before Dec 16. The fixture supplies the account, amount, health movement, and deadline, but no recommended intervention or owner beyond VP CS.",
+      "insights": [],
+      "callout": { "tone": "decision", "label": "Decision", "text": "Meridian renewal save: $0.8M at risk, decision due Dec 16." }
+    }
+  ],
+  "evidence": [
+    { "result_id": "atlas:mbr_review:all", "tool": "vedha_get_atlas_review", "scope": "atlas" }
+  ],
+  "warnings": [
+    "No cross-altitude causal relationship is claimed between outstanding AR and the Meridian renewal risk."
+  ]
+}

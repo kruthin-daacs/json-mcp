@@ -10,6 +10,13 @@
       "percent_to_target": "65%",
       "status": "behind"
     },
+    "measures": {
+      "current_acv": { "value": 3.6, "display": "$3.6M", "unit": "usd_millions" },
+      "target_acv": { "value": 5.5, "display": "$5.5M", "unit": "usd_millions" },
+      "percent_to_target": { "value": 0.65, "display": "65%", "unit": "ratio" },
+      "pipeline_coverage": { "value": 1.1, "display": "1.1x", "unit": "multiple" },
+      "win_rate": { "value": 0.28, "display": "28%", "unit": "ratio" }
+    },
     "drivers": [
       { "metric": "Pipeline Coverage", "value": "1.1x (thin)" },
       { "metric": "Win Rate", "value": "28%" },

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vedha.local/schemas/review-object.schema.json",
+  "title": "Vedha Monthly Business Review object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "output_type", "recipe_id", "recipe_version", "title", "period", "cadence", "executive_summary", "sections", "evidence", "warnings"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "output_type": { "const": "review-object" },
+    "recipe_id": { "const": "mbr_review" },
+    "recipe_version": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "period": { "type": "string", "minLength": 1 },
+    "cadence": { "const": "monthly" },
+    "executive_summary": { "type": "string", "minLength": 1 },
+    "sections": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step", "section", "heading", "question", "answer", "insights"],
+        "properties": {
+          "step": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "section": { "enum": ["objective", "kr_finance", "kr_revenue", "kr_customer_journey", "causal_chain", "decision"] },
+          "heading": { "type": "string", "minLength": 1 },
+          "question": { "type": "string", "minLength": 1 },
+          "answer": { "type": "string", "minLength": 1 },
+          "insights": { "type": "array", "items": { "$ref": "atomic-insight.schema.json" } },
+          "callout": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["tone", "label", "text"],
+            "properties": {
+              "tone": { "enum": ["neutral", "healthy", "watch", "critical", "decision"] },
+              "label": { "type": "string", "minLength": 1 },
+              "text": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["result_id", "tool", "scope"],
+        "properties": {
+          "result_id": { "type": "string", "minLength": 1 },
+          "tool": { "type": "string", "minLength": 1 },
+          "scope": { "enum": ["atlas", "canvas", "thread"] }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

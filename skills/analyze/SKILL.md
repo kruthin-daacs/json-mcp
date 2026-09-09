@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: Analyze company metrics through Vedha fixture tools and create an evidence-backed JSON and HTML report. Use for business reviews, canvas questions, metric diagnosis, and audit questions.
+description: Route business questions through Vedha MCP fixtures with explicit Atlas, Canvas, and Thread scope. Use for company reviews, bounded workflow questions, metric diagnosis, and audit questions.
 ---
 
 # Vedha analysis
@@ -9,7 +9,7 @@ The operating model has three altitudes: **Finance** (Revenue, Cash — roll-up 
 
 Resolve the request as one of these scopes:
 
-- **Atlas**: company-wide or cross-canvas review (e.g. the Monthly Business Review). Call `vedha_get_atlas_review` with `skill_id: "mbr_review"` — it deterministically walks the recipe's 6 steps and returns each step's declared field reads already resolved from the named canvases. Fill each step's `emits_template` using only values present in `resolved`; never invent a value the tool did not return.
+- **Atlas**: company-wide or cross-canvas review (e.g. the Monthly Business Review). Call `vedha_get_atlas_review` with `recipe_id: "mbr_review"`. It deterministically executes the recipe's six steps and resolves declared reads from the named canvases. For an MBR, then follow the `mbr-view` skill to select atomic insights and create the presentation.
 - **Canvas**: bounded question within one workflow (`goal`, `drivers`, `inputs`, `guardrails`, `funnel`, `entities`, `dimensions`). Call `vedha_get_canvas` once, optionally narrowing with `dimension`/`value`.
 - **Thread**: causal or follow-up "why" question inside one canvas. Call `vedha_get_diagnosis` with a `dimension` (and optional `value`) to get the guardrails plus that dimension's breakdown as evidence.
 
@@ -19,10 +19,10 @@ Resolve the request as one of these scopes:
 2. Never read or modify files under `fixtures/` directly.
 3. Never invent missing data. State that fixture evidence is unavailable.
 4. Escalate a Canvas or Thread request to Atlas when it crosses canvases — call `vedha_get_atlas_review` (or make an additional `vedha_get_canvas` call and say so) instead of guessing.
-5. Follow [scope-rules.md](scope-rules.md) and [chart-rules.md](chart-rules.md).
-6. Write one scenario directory under `runs/<scenario-id>/` containing `request.json`, `result.json`, `audit.json`, and `index.html`.
-7. Ensure `result.json` conforms to `schemas/analysis-result.schema.json`.
+5. Follow [scope-rules.md](scope-rules.md). Use `chart-rules.md` only for non-MBR outputs; MBR visualization judgment belongs to the `mbr-view` skill.
+6. When the user requests an artifact, write one scenario directory under `runs/<scenario-id>/` containing `request.json`, `result.json`, `audit.json`, and `index.html`.
+7. An MBR `result.json` must conform to `schemas/review-object.schema.json`; other outputs use `schemas/analysis-result.schema.json`.
 8. Put every MCP `result_id` used in `result.json.evidence` and `audit.json`.
-9. Generate HTML by running `npm run render -- runs/<scenario-id>/result.json runs/<scenario-id>/index.html`.
+9. Generate HTML by running `node "${CLAUDE_PLUGIN_ROOT}/scripts/render-report.mjs" runs/<scenario-id>/result.json runs/<scenario-id>/index.html`.
 
 Use the scenario ID supplied by the user. If none is supplied, use a short lowercase identifier derived from the request.

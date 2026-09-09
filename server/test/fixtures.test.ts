@@ -13,6 +13,7 @@ test("all six workflow canvases load and expose the shared shape", async () => {
     const canvas = await loadCanvas(id);
     assert.equal(canvas.canvas_id, id);
     assert.ok(canvas.goal, `${id} missing goal`);
+    assert.ok(canvas.measures, `${id} missing numeric measures`);
     assert.ok(Array.isArray(canvas.dimensions), `${id} missing dimensions`);
   }
 });
@@ -46,8 +47,30 @@ test("resolvePath resolves chained bracket filters", async () => {
 
 test("mbr_review recipe loads with six ordered steps", async () => {
   const recipe = await loadRecipe("mbr_review");
+  assert.equal(recipe.recipe_version, "1.0");
   assert.equal(recipe.steps.length, 6);
   assert.deepEqual(recipe.assembly.order, [1, 2, 3, 4, 5, 6]);
+});
+
+test("every MBR recipe read resolves from its declared canvas", async () => {
+  const recipe = await loadRecipe("mbr_review");
+  for (const step of recipe.steps) {
+    for (const read of step.reads) {
+      const canvas = await loadCanvas(read.workflow);
+      for (const field of read.fields) {
+        assert.notEqual(resolvePath(canvas, field), undefined, `step ${step.step}: ${read.workflow}.${field}`);
+      }
+    }
+  }
+});
+
+test("ARR bridge reconciles opening and movements to current ARR", async () => {
+  const canvas = await loadCanvas("revenue_accounting");
+  const bridge = canvas.measures.arr_bridge;
+  const current = Object.values(bridge.children as Record<string, number>).reduce((sum, value) => sum + value, 0);
+  const prior = Object.values(bridge.children_prior as Record<string, number>).reduce((sum, value) => sum + value, 0);
+  assert.equal(prior, bridge.parent_prior);
+  assert.equal(current, bridge.parent_current);
 });
 
 test("unknown recipes are rejected", async () => {

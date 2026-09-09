@@ -12,6 +12,36 @@
       "percent_to_target": "90%",
       "status": "behind"
     },
+    "measures": {
+      "opening_arr": { "value": 48.0, "display": "$48.0M", "unit": "usd_millions" },
+      "current_arr": { "value": 54.0, "display": "$54.0M", "unit": "usd_millions" },
+      "target_arr": { "value": 60.0, "display": "$60.0M", "unit": "usd_millions" },
+      "net_new_qtd": { "value": 6.0, "display": "+$6.0M", "unit": "usd_millions" },
+      "new_arr": { "value": 3.6, "display": "+$3.6M", "unit": "usd_millions" },
+      "expansion_arr": { "value": 4.2, "display": "+$4.2M", "unit": "usd_millions" },
+      "contraction_arr": { "value": -0.6, "display": "-$0.6M", "unit": "usd_millions" },
+      "churn_arr": { "value": -1.2, "display": "-$1.2M", "unit": "usd_millions" },
+      "arr_bridge": {
+        "parent_prior": 48.0,
+        "parent_current": 54.0,
+        "unit": "usd_millions",
+        "operator": "+",
+        "children_prior": {
+          "Opening ARR": 48.0,
+          "New": 0.0,
+          "Expansion": 0.0,
+          "Contraction": 0.0,
+          "Churn": 0.0
+        },
+        "children": {
+          "Opening ARR": 48.0,
+          "New": 3.6,
+          "Expansion": 4.2,
+          "Contraction": -0.6,
+          "Churn": -1.2
+        }
+      }
+    },
     "drivers": [
       { "metric": "New", "value": "+$3.6M" },
       { "metric": "Expansion", "value": "+$4.2M" },
