@@ -31,6 +31,7 @@
       "scenario": "monitoring",
       "model_scope": ["revenue_accounting", "cash_accounting"],
       "insight_pattern": "comparison",
+      "plan_question": "Is ARR on plan, and is billed cash converting to collected cash?",
       "constructed_question": {
         "primary": { "pattern": "comparison", "on": "ARR", "over": "this_month", "against": "plan", "resolves_to": "revenue_state" },
         "secondary": { "pattern": "state", "on": "cash_collected", "resolves_to": "cash_state" }
@@ -48,6 +49,7 @@
       "scenario": "monitoring",
       "model_scope": ["cash_accounting"],
       "insight_pattern": "movement",
+      "plan_question": "Did billed cash collect within the expected operating state?",
       "constructed_question": {
         "primary": { "pattern": "movement", "on": "collected_vs_billed", "over": "month_vs_prior", "resolves_to": "cash_state" }
       },
@@ -63,6 +65,7 @@
       "scenario": "monitoring diagnosing",
       "model_scope": ["revenue_accounting", "new_business", "retention", "expansion", "churn_engine"],
       "insight_pattern": "contribution",
+      "plan_question": "Which revenue levers moved ARR?",
       "constructed_question": {
         "primary": { "pattern": "contribution", "on": "ARR_movement", "over": "this_month", "by": "lever", "resolves_to": "revenue_state" }
       },
@@ -79,6 +82,7 @@
       "scenario": "diagnosing",
       "model_scope": ["retention", "churn_engine"],
       "insight_pattern": "filter_score",
+      "plan_question": "Where is customer journey risk concentrated?",
       "constructed_question": {
         "primary": { "pattern": "filter_score", "on": "at_risk_ARR", "over": "this_month", "by": "cohort_x_health_tier", "resolves_to": "customer_state" }
       },
@@ -94,6 +98,7 @@
       "scenario": "diagnosing traverses feeds_up in reverse",
       "model_scope": ["cash_accounting", "retention"],
       "insight_pattern": "decompose",
+      "plan_question": "Does the available evidence establish a cross-altitude causal path?",
       "constructed_question": {
         "primary": { "pattern": "decompose", "on": "the_anomaly", "across": ["cash", "revenue", "customer"], "resolves_to": "root_cause" }
       },
@@ -110,6 +115,7 @@
       "scenario": "acting / sharing — not a question, an output",
       "model_scope": ["retention"],
       "insight_pattern": "decision",
+      "plan_question": "What decision requires immediate attention?",
       "constructed_question": {
         "primary": { "pattern": "decision", "action": "commit_the_renewal_save", "target": "{open_account_name}", "deadline": "{open_deadline}" }
       },

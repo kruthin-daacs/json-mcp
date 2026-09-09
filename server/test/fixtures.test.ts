@@ -1,11 +1,19 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { canvasIds, filterDimension, loadCanvas, loadCatalog, loadRecipe, resolvePath } from "../src/fixtures.js";
+import { canvasIds, filterDimension, loadCanvas, loadCatalog, loadRecipe, loadSemanticModels, resolvePath } from "../src/fixtures.js";
 
 test("catalog exposes the DataOrbit altitude tree", async () => {
   const catalog = await loadCatalog();
   assert.equal(Array.isArray(catalog.altitudes), true);
   assert.equal((catalog.altitudes as unknown[]).length, 3);
+});
+
+test("catalog workflow nodes declare goal metric names without query values", async () => {
+  const catalog = await loadCatalog();
+  const altitudes = catalog.altitudes as Array<Record<string, unknown>>;
+  const nodes = altitudes.flatMap((altitude) => (altitude.workflows ?? altitude.flows) as Array<Record<string, unknown>>);
+  assert.ok(nodes.every((node) => typeof node.goal_metric === "string"));
+  assert.ok(nodes.every((node) => !Object.hasOwn(node, "value")));
 });
 
 test("all six workflow canvases load and expose the shared shape", async () => {
@@ -50,6 +58,16 @@ test("mbr_review recipe loads with six ordered steps", async () => {
   assert.equal(recipe.recipe_version, "1.0");
   assert.equal(recipe.steps.length, 6);
   assert.deepEqual(recipe.assembly.order, [1, 2, 3, 4, 5, 6]);
+  assert.ok(recipe.steps.every((step) => step.plan_question.length > 0));
+});
+
+test("semantic model projection contains labels and no query values", async () => {
+  const models = await loadSemanticModels(["retention"]);
+  assert.deepEqual(Object.keys(models[0]), ["canvas_id", "workflow", "entity", "activity", "goal_metric", "dimensions", "input_measures"]);
+  assert.equal(models[0].goal_metric, "NRR");
+  assert.ok(models[0].input_measures.includes("Renewal Book Due"));
+  const serialized = JSON.stringify(models);
+  assert.doesNotMatch(serialized, /\$|"current"|"target"|"status"|"measures"/i);
 });
 
 test("every MBR recipe read resolves from its declared canvas", async () => {

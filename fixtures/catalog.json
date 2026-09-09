@@ -10,11 +10,15 @@
       "workflows": [
         {
           "name": "Revenue",
+          "canvas_id": "revenue_accounting",
+          "goal_metric": "ARR",
           "formula": "Revenue = New + Retention + Expansion - Churn",
           "job": "roll up the equation is revenue on plan?"
         },
         {
           "name": "Cash",
+          "canvas_id": "cash_accounting",
+          "goal_metric": "Cash Collected",
           "formula": "Cash = Cash Collected (Billed)",
           "job": "roll up the equation is revenue on plan?"
         }
@@ -28,6 +32,8 @@
       "workflows": [
         {
           "name": "New Revenue",
+          "canvas_id": "new_business",
+          "goal_metric": "New ACV",
           "description": "win new logos",
           "owner": "VP Sales",
           "cadence": "weekly",
@@ -36,6 +42,8 @@
         },
         {
           "name": "Retention Revenue",
+          "canvas_id": "retention",
+          "goal_metric": "NRR",
           "description": "renew the base",
           "owner": "VP CS",
           "cadence": "90/60/30",
@@ -44,6 +52,8 @@
         },
         {
           "name": "Expansion Revenue",
+          "canvas_id": "expansion",
+          "goal_metric": "Expansion ARR",
           "description": "grow accounts",
           "owner": "VP CS / Sales",
           "cadence": "quarterly",
@@ -52,6 +62,8 @@
         },
         {
           "name": "Churn Revenue",
+          "canvas_id": "churn_engine",
+          "goal_metric": "Minimised Lost ARR",
           "description": "revenue lost",
           "owner": "VP CS",
           "cadence": "continuous",
@@ -69,6 +81,7 @@
       "flows": [
         {
           "name": "Lead-to-Cash",
+          "goal_metric": "New ACV",
           "under_workflow": "New Revenue",
           "owner": "VP Sales",
           "steps": [
@@ -83,6 +96,7 @@
         },
         {
           "name": "Renewal-to-Cash",
+          "goal_metric": "NRR",
           "under_workflow": "Retention Revenue",
           "owner": "VP CS",
           "steps": [
@@ -95,6 +109,7 @@
         },
         {
           "name": "Quote-to-Cash",
+          "goal_metric": "Expansion ARR",
           "under_workflow": "Expansion Revenue",
           "owner": "VP CS / Sales",
           "steps": [
@@ -108,6 +123,7 @@
         },
         {
           "name": "Risk-to-Resolution",
+          "goal_metric": "Minimised Lost ARR",
           "under_workflow": "Churn Revenue",
           "owner": "VP CS",
           "steps": [

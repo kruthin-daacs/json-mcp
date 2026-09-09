@@ -22,6 +22,7 @@ export interface RecipeStep {
   scenario: string;
   model_scope: string[];
   insight_pattern: string;
+  plan_question: string;
   constructed_question: Record<string, unknown>;
   reads: Array<{ workflow: string; fields: string[] }>;
   emits_template: string;
@@ -51,6 +52,15 @@ const ALLOWED_FIXTURES: Record<string, string> = {
 
 const ALLOWED_RECIPES: Record<string, string> = {
   mbr_review: "mbr_review.json"
+};
+
+const WORKFLOW_NAMES: Record<string, string> = {
+  revenue_accounting: "Revenue",
+  cash_accounting: "Cash",
+  new_business: "New Revenue",
+  retention: "Retention Revenue",
+  expansion: "Expansion Revenue",
+  churn_engine: "Churn Revenue"
 };
 
 function fixturesDir(): string {
@@ -86,6 +96,24 @@ export async function loadRecipe(skillId: string): Promise<Recipe> {
     throw new Error(`Unknown recipe '${skillId}'. Only 'mbr_review' is available.`);
   }
   return readJson<Recipe>(filename);
+}
+
+export async function loadSemanticModels(selectedCanvasIds: string[] = canvasIds()) {
+  return Promise.all(selectedCanvasIds.map(async (canvasId) => {
+    const canvas = await loadCanvas(canvasId);
+    return {
+      canvas_id: canvasId,
+      workflow: WORKFLOW_NAMES[canvasId],
+      entity: canvas.entities.map((item) => String(item.name)),
+      activity: canvas.funnel.map((item) => String(item.stage)),
+      goal_metric: String(canvas.goal.metric),
+      dimensions: canvas.dimensions.map((dimension) => ({
+        name: dimension.name,
+        values: dimension.values
+      })),
+      input_measures: canvas.inputs.map((item) => String(item.metric))
+    };
+  }));
 }
 
 export function filterDimension(

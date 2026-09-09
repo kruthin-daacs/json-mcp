@@ -1,5 +1,5 @@
 {
   "name": "vedha-playground",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fixture-backed Vedha analytics playground for Claude and Cowork"
 }

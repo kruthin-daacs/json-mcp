@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import * as z from "zod/v4";
-import { canvasIds, filterDimension, loadCanvas, loadCatalog, loadRecipe, resolvePath } from "./fixtures.js";
+import { canvasIds, filterDimension, loadCanvas, loadCatalog, loadRecipe, loadSemanticModels, resolvePath } from "./fixtures.js";
 
 const jsonRecord = z.record(z.string(), z.json());
 const audits = new Map<string, Record<string, unknown>>();
@@ -29,7 +29,7 @@ function rememberAudit(resultId: string, route: string[], input: Record<string, 
 }
 
 function createServer(): McpServer {
-  const server = new McpServer({ name: "vedha-json-mcp", version: "0.2.0" });
+  const server = new McpServer({ name: "vedha-json-mcp", version: "0.3.0" });
   const canvasIdEnum = z.enum(canvasIds() as [string, ...string[]]);
 
   server.registerTool(
@@ -46,10 +46,85 @@ function createServer(): McpServer {
         schema_version: "1.0",
         result_id: resultId,
         scope: "atlas",
+        output_type: "business-map",
         ...(await loadCatalog())
       };
       rememberAudit(resultId, ["atlas", "catalog"], {});
       return resultBlock(output);
+    }
+  );
+
+  server.registerTool(
+    "vedha_get_semantic_model",
+    {
+      title: "Get the Vedha semantic model",
+      description: "Return a deterministic, value-free semantic listing for selected workflows: entity, activity, goal metric, dimensions, and input measure names. This is metadata only. It never runs a business query and never returns metric values or deltas.",
+      inputSchema: z.object({
+        canvas_ids: z.array(canvasIdEnum).min(1).optional()
+      }),
+      outputSchema: jsonRecord,
+      annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false }
+    },
+    async ({ canvas_ids }) => {
+      try {
+        const selected = canvas_ids ?? canvasIds();
+        const resultId = `semantic:${selected.join("+")}`;
+        const output = {
+          schema_version: "1.0",
+          result_id: resultId,
+          scope: selected.length === canvasIds().length ? "atlas" : "canvas",
+          output_type: "semantic-model",
+          models: await loadSemanticModels(selected)
+        };
+        rememberAudit(resultId, ["semantic-model", ...selected], { canvas_ids: selected });
+        return resultBlock(output);
+      } catch (error) {
+        return failure(error);
+      }
+    }
+  );
+
+  server.registerTool(
+    "vedha_get_review_plan",
+    {
+      title: "Preview a Vedha review plan",
+      description: "Return the MBR recipe as a query-free approval plan: ordered questions and semantic-model scope only. Call this before review execution. Do not call vedha_get_atlas_review until the user explicitly approves this plan.",
+      inputSchema: z.object({ recipe_id: z.literal("mbr_review") }),
+      outputSchema: jsonRecord,
+      annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false }
+    },
+    async ({ recipe_id }) => {
+      try {
+        const recipe = await loadRecipe(recipe_id);
+        const order = (recipe.assembly.order as number[]) ?? recipe.steps.map((item) => item.step);
+        const steps = [...recipe.steps]
+          .sort((a, b) => order.indexOf(a.step) - order.indexOf(b.step))
+          .map((item) => ({
+            step: item.step,
+            question: item.plan_question,
+            scope: item.model_scope
+          }));
+        const semanticModels = [...new Set(steps.flatMap((item) => item.scope))];
+        const resultId = `plan:${recipe_id}:${recipe.recipe_version}`;
+        const output = {
+          schema_version: "1.0",
+          result_id: resultId,
+          scope: "atlas",
+          output_type: "review-plan",
+          recipe_id,
+          recipe_version: recipe.recipe_version,
+          name: recipe.name,
+          cadence: recipe.cadence,
+          objective_question: String(recipe.objective.heading),
+          semantic_models: semanticModels,
+          steps,
+          approval_required: true
+        };
+        rememberAudit(resultId, ["plan", recipe_id], { recipe_id });
+        return resultBlock(output);
+      } catch (error) {
+        return failure(error);
+      }
     }
   );
 

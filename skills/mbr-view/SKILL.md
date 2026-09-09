@@ -11,15 +11,35 @@ This is a judgment and presentation skill. It does not define the business revie
 - The **MCP** resolves those reads from semantic JSON fixtures.
 - This **skill** chooses atomic insights, frames the evidence, and presents the review.
 
-## Required flow
+## Five-prompt happy path
 
-1. Call `vedha_get_atlas_review` with `recipe_id: "mbr_review"`.
-2. Preserve all six recipe steps and their returned order. Do not add, remove, merge, or reorder sections.
-3. Use only values in each step's `resolved` object. Use numeric `value` fields for computation and `display` fields for labels.
-4. Choose atoms using [atomic-insights.md](atomic-insights.md). Atom IDs and typed inputs are authoritative; do not rename an atom after a chart type.
-5. Produce `schemas/review-object.schema.json`. Every atom must cite the Atlas `result_id` in `evidence_result_ids`.
-6. Validate with `node "${CLAUDE_PLUGIN_ROOT}/scripts/validate-review.mjs" <result.json>` before rendering.
-7. Render with `node "${CLAUDE_PLUGIN_ROOT}/scripts/render-report.mjs" <result.json> <index.html>`.
+1. **Business map:** handled by the `business-map` skill using `vedha_list_contexts`.
+2. **Run my business review:** call `vedha_get_review_plan` with `recipe_id: "mbr_review"`. Present the ordered plan and ask for approval. Do not call `vedha_get_atlas_review`, do not resolve values, and do not render the review.
+3. **Show the semantic model behind this:** optional. Call `vedha_get_semantic_model` with the pending plan's semantic models. Present only the deterministic labels defined by the `business-map` skill, then ask for approval again.
+4. **Go ahead:** only after an explicit approval in the same conversation, call `vedha_get_atlas_review` with `recipe_id: "mbr_review"`, construct the review-object, validate it, and render the HTML.
+5. **Edit/drop a lever:** outside the current happy path. State that scope editing is not enabled in this version; do not silently alter the recipe or recompute numbers.
+
+If "Go ahead" is received without a pending plan in the current conversation, present the plan first. Never treat the initial review request as approval.
+
+## Plan presentation
+
+Present exactly what `vedha_get_review_plan` returns:
+
+- Review name and objective question.
+- Each ordered review question.
+- Semantic-model scope for each question, using user-facing workflow names.
+- A final approval request: `Approve this plan? Reply "Go ahead" to run it, or ask to see the semantic model.`
+
+The plan contains no query result, metric value, target, status, delta, finding, visualization, or recommendation. Do not use atomic insights during planning.
+
+## Approved execution
+
+1. Preserve all six recipe steps and their returned order. Do not add, remove, merge, or reorder sections.
+2. Use only values in each step's `resolved` object. Use numeric `value` fields for computation and `display` fields for labels.
+3. Choose atoms using [atomic-insights.md](atomic-insights.md). Atom IDs and typed inputs are authoritative internal metadata.
+4. Produce `schemas/review-object.schema.json`. Every atom must cite the Atlas `result_id` in `evidence_result_ids`.
+5. Validate with `node "${CLAUDE_PLUGIN_ROOT}/scripts/validate-review.mjs" <result.json>` before rendering.
+6. Render with `node "${CLAUDE_PLUGIN_ROOT}/scripts/render-report.mjs" <result.json> <index.html>`.
 
 If working in chat without filesystem access, return the valid review-object JSON in a fenced block and then present the same six-section review in chat. Do not pretend an HTML artifact was created.
 
@@ -40,6 +60,8 @@ If working in chat without filesystem access, return the valid review-object JSO
 
 - Make the first viewport a compact executive review, not a landing page.
 - Show title, period, cadence, executive summary, and the objective status first.
+- Keep each recipe `section` identifier in `result.json` for ordering and validation, but never display internal section keys such as `objective`, `kr_finance`, or `causal_chain` in HTML. Display only the user-facing `heading` and `question`.
+- Keep atomic taxonomy IDs such as `A1`, `A2`, `D1`, and `E5` in `result.json`, but never display them in HTML or user-facing prose.
 - Use restrained operational styling, square-to-small radii, clear hierarchy, and accessible color plus text labels.
 - Render signed contributions consistently: positive additions in green, negative drags in red, opening/current totals in neutral/blue.
 - Keep evidence result IDs visible in a compact footer or details area.
