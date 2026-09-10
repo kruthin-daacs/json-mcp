@@ -1,6 +1,11 @@
 {
   "name": "DataOrbit business operating model",
   "description": "How it runs Altitudes each at its own cadence",
+  "as_of": {
+    "as_of": "Dec 4",
+    "period": "Q4 FY26",
+    "week": "wk 10 of 13"
+  },
   "altitudes": [
     {
       "level": 1,
@@ -13,14 +18,18 @@
           "canvas_id": "revenue_accounting",
           "goal_metric": "ARR",
           "formula": "Revenue = New + Retention + Expansion - Churn",
-          "job": "roll up the equation is revenue on plan?"
+          "job": "roll up the equation is revenue on plan?",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on revenue_accounting; ARR pace vs target_arr is carried by the objective banner, not by state"
         },
         {
           "name": "Cash",
           "canvas_id": "cash_accounting",
           "goal_metric": "Cash Collected",
           "formula": "Cash = Cash Collected (Billed)",
-          "job": "roll up the equation is revenue on plan?"
+          "job": "roll up the equation is revenue on plan?",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on cash_accounting; AR ageing 100% inside the 0-30 day bucket"
         }
       ]
     },
@@ -38,7 +47,9 @@
           "owner": "VP Sales",
           "cadence": "weekly",
           "job": "land new business",
-          "flow_ref": "Lead-to-Cash"
+          "flow_ref": "Lead-to-Cash",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on new_business; acv-vs-target pace is carried by the card delta, not by state"
         },
         {
           "name": "Retention Revenue",
@@ -48,7 +59,9 @@
           "owner": "VP CS",
           "cadence": "90/60/30",
           "job": "protect the base before renewal",
-          "flow_ref": "Renewal-to-Cash"
+          "flow_ref": "Renewal-to-Cash",
+          "state": "warm",
+          "state_rule": "warm: red_tier_arr $2.2M of the $12.0M book (18.3%) with open_renewal Meridian $0.8M deciding Dec 16 — inside the 30-day renewal window"
         },
         {
           "name": "Expansion Revenue",
@@ -58,7 +71,9 @@
           "owner": "VP CS / Sales",
           "cadence": "quarterly",
           "job": "grow existing accounts",
-          "flow_ref": "Quote-to-Cash"
+          "flow_ref": "Quote-to-Cash",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on expansion"
         },
         {
           "name": "Churn Revenue",
@@ -68,7 +83,9 @@
           "owner": "VP CS",
           "cadence": "continuous",
           "job": "stop the leak",
-          "flow_ref": "Risk-to-Resolution"
+          "flow_ref": "Risk-to-Resolution",
+          "state": "nominal",
+          "state_rule": "nominal: open_at_risk $0.8M carries no account/deadline fields — the same Meridian exposure is flagged on retention; save-rate-vs-target pace is carried by the card delta, not by state"
         }
       ]
     },
@@ -84,6 +101,8 @@
           "goal_metric": "New ACV",
           "under_workflow": "New Revenue",
           "owner": "VP Sales",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on new_business; coverage-vs-threshold is pace, not exposure",
           "steps": [
             { "step 1": "Lead" },
             { "step 2": "Qualify" },
@@ -99,6 +118,8 @@
           "goal_metric": "NRR",
           "under_workflow": "Retention Revenue",
           "owner": "VP CS",
+          "state": "warm",
+          "state_rule": "warm: red_tier_arr $2.2M with open_renewal Meridian $0.8M, decision Dec 16 — inside the 30-day renewal window",
           "steps": [
             { "step 1": "Renewal due" },
             { "step 2": "Health & risk check" },
@@ -112,6 +133,8 @@
           "goal_metric": "Expansion ARR",
           "under_workflow": "Expansion Revenue",
           "owner": "VP CS / Sales",
+          "state": "nominal",
+          "state_rule": "nominal: no red-tier exposure with a named open item on expansion",
           "steps": [
             { "step 1": "Expansion signal" },
             { "step 2": "Configure & Quote" },
@@ -126,6 +149,8 @@
           "goal_metric": "Minimised Lost ARR",
           "under_workflow": "Churn Revenue",
           "owner": "VP CS",
+          "state": "nominal",
+          "state_rule": "nominal: open_at_risk $0.8M has no account/deadline fields — the same Meridian exposure is flagged on Renewal-to-Cash, not double-counted here",
           "steps": [
             { "step 1": "Risk signal" },
             { "step 2": "Intervene" },

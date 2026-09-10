@@ -11,83 +11,279 @@
       "status": "behind"
     },
     "measures": {
-      "current_acv": { "value": 3.6, "display": "$3.6M", "unit": "usd_millions" },
-      "target_acv": { "value": 5.5, "display": "$5.5M", "unit": "usd_millions" },
-      "percent_to_target": { "value": 0.65, "display": "65%", "unit": "ratio" },
-      "pipeline_coverage": { "value": 1.1, "display": "1.1x", "unit": "multiple" },
-      "win_rate": { "value": 0.28, "display": "28%", "unit": "ratio" },
-      "acv_delta_vs_target": { "value": -1.9, "display": "-$1.9M", "unit": "usd_millions", "basis": "current_acv minus target_acv (attainment gap)" }
+      "current_acv": {
+        "value": 3.6,
+        "display": "$3.6M",
+        "unit": "usd_millions"
+      },
+      "target_acv": {
+        "value": 5.5,
+        "display": "$5.5M",
+        "unit": "usd_millions"
+      },
+      "percent_to_target": {
+        "value": 0.65,
+        "display": "65%",
+        "unit": "ratio"
+      },
+      "pipeline_coverage": {
+        "value": 1.1,
+        "display": "1.1x",
+        "unit": "multiple"
+      },
+      "win_rate": {
+        "value": 0.28,
+        "display": "28%",
+        "unit": "ratio"
+      },
+      "acv_delta_vs_target": {
+        "value": -1.9,
+        "display": "-$1.9M",
+        "unit": "usd_millions",
+        "basis": "current_acv minus target_acv (attainment gap)"
+      },
+      "won_acv": {
+        "value": 3.6,
+        "display": "$3.6M",
+        "unit": "usd_millions",
+        "basis": "funnel 'provision' stage \u2014 Won, provisioning"
+      },
+      "won_count": {
+        "value": 11,
+        "display": "11 deals",
+        "unit": "count",
+        "basis": "won_acv $3.6M at drivers 'Avg ACV' $327K"
+      },
+      "top_open_deal": {
+        "value": 5.8,
+        "display": "$5.8M in negotiation",
+        "unit": "usd_millions",
+        "basis": "funnel 'contract' stage \u2014 largest open (unclosed) stage value; no named deal in fixture"
+      }
     },
     "drivers": [
-      { "metric": "Pipeline Coverage", "value": "1.1x (thin)" },
-      { "metric": "Win Rate", "value": "28%" },
-      { "metric": "Avg ACV", "value": "$327K" }
+      {
+        "metric": "Pipeline Coverage",
+        "value": "1.1x (thin)"
+      },
+      {
+        "metric": "Win Rate",
+        "value": "28%"
+      },
+      {
+        "metric": "Avg ACV",
+        "value": "$327K"
+      }
     ],
     "inputs": [
-      { "metric": "Qualified", "value": "$14.2M" },
-      { "metric": "Quote", "value": "$9.6M" },
-      { "metric": "Negotiate", "value": "$5.8M" },
-      { "metric": "Won", "value": "$3.6M" }
+      {
+        "metric": "Qualified",
+        "value": "$14.2M"
+      },
+      {
+        "metric": "Quote",
+        "value": "$9.6M"
+      },
+      {
+        "metric": "Negotiate",
+        "value": "$5.8M"
+      },
+      {
+        "metric": "Won",
+        "value": "$3.6M"
+      }
     ],
     "guardrails": [
-      { "metric": "Coverage Ratio", "value": "1.1x", "threshold": "2.0x", "status": "below target, thin" },
-      { "metric": "Discount Floor", "value": "~14% avg discount", "threshold": "12%", "status": "above floor, watch" },
-      { "metric": "Quota Attainment", "value": "65%", "threshold": "100%", "status": "behind" },
-      { "metric": "CAC Payback", "value": "~14 months", "threshold": "18 months", "status": "healthy" }
+      {
+        "metric": "Coverage Ratio",
+        "value": "1.1x",
+        "threshold": "2.0x",
+        "status": "below target, thin"
+      },
+      {
+        "metric": "Discount Floor",
+        "value": "~14% avg discount",
+        "threshold": "12%",
+        "status": "above floor, watch"
+      },
+      {
+        "metric": "Quota Attainment",
+        "value": "65%",
+        "threshold": "100%",
+        "status": "behind"
+      },
+      {
+        "metric": "CAC Payback",
+        "value": "~14 months",
+        "threshold": "18 months",
+        "status": "healthy"
+      }
     ],
     "funnel": [
-      { "stage": "lead", "metric": "Leads sourced", "value": "~180 leads QTD" },
-      { "stage": "qualify", "metric": "Qualified pipeline", "value": "$14.2M" },
-      { "stage": "configure_quote", "metric": "Quote stage", "value": "$9.6M" },
-      { "stage": "contract", "metric": "Negotiate stage", "value": "$5.8M" },
-      { "stage": "provision", "metric": "Won, provisioning", "value": "$3.6M" },
-      { "stage": "invoice", "metric": "Invoiced", "value": "$3.6M" },
-      { "stage": "cash", "metric": "Booked, cash pending", "value": "$3.6M (realization tracked under Cash workflow)" }
+      {
+        "stage": "lead",
+        "metric": "Leads sourced",
+        "value": "~180 leads QTD"
+      },
+      {
+        "stage": "qualify",
+        "metric": "Qualified pipeline",
+        "value": "$14.2M"
+      },
+      {
+        "stage": "configure_quote",
+        "metric": "Quote stage",
+        "value": "$9.6M"
+      },
+      {
+        "stage": "contract",
+        "metric": "Negotiate stage",
+        "value": "$5.8M"
+      },
+      {
+        "stage": "provision",
+        "metric": "Won, provisioning",
+        "value": "$3.6M"
+      },
+      {
+        "stage": "invoice",
+        "metric": "Invoiced",
+        "value": "$3.6M"
+      },
+      {
+        "stage": "cash",
+        "metric": "Booked, cash pending",
+        "value": "$3.6M (realization tracked under Cash workflow)"
+      }
     ],
     "entities": [
-      { "name": "Lead" },
-      { "name": "Opportunity" },
-      { "name": "Deal" },
-      { "name": "Account" },
-      { "name": "Contract" }
+      {
+        "name": "Lead"
+      },
+      {
+        "name": "Opportunity"
+      },
+      {
+        "name": "Deal"
+      },
+      {
+        "name": "Account"
+      },
+      {
+        "name": "Contract"
+      }
     ],
     "dimensions": [
       {
         "name": "segment",
-        "values": ["enterprise", "mid_market", "smb"],
+        "values": [
+          "enterprise",
+          "mid_market",
+          "smb"
+        ],
         "breakdown": [
-          { "value": "enterprise", "acv": "$2.16M", "percent": "60%" },
-          { "value": "mid_market", "acv": "$1.08M", "percent": "30%" },
-          { "value": "smb", "acv": "$0.36M", "percent": "10%" }
+          {
+            "value": "enterprise",
+            "acv": "$2.16M",
+            "percent": "60%"
+          },
+          {
+            "value": "mid_market",
+            "acv": "$1.08M",
+            "percent": "30%"
+          },
+          {
+            "value": "smb",
+            "acv": "$0.36M",
+            "percent": "10%"
+          }
         ]
       },
       {
         "name": "region",
-        "values": ["USA", "IND", "UK", "AUS"],
+        "values": [
+          "USA",
+          "IND",
+          "UK",
+          "AUS"
+        ],
         "breakdown": [
-          { "value": "USA", "acv": "$1.98M", "percent": "55%" },
-          { "value": "UK", "acv": "$0.72M", "percent": "20%" },
-          { "value": "IND", "acv": "$0.54M", "percent": "15%" },
-          { "value": "AUS", "acv": "$0.36M", "percent": "10%" }
+          {
+            "value": "USA",
+            "acv": "$1.98M",
+            "percent": "55%"
+          },
+          {
+            "value": "UK",
+            "acv": "$0.72M",
+            "percent": "20%"
+          },
+          {
+            "value": "IND",
+            "acv": "$0.54M",
+            "percent": "15%"
+          },
+          {
+            "value": "AUS",
+            "acv": "$0.36M",
+            "percent": "10%"
+          }
         ]
       },
       {
         "name": "product",
-        "values": ["connectors", "seats", "usage", "premium"],
+        "values": [
+          "connectors",
+          "seats",
+          "usage",
+          "premium"
+        ],
         "breakdown": [
-          { "value": "connectors", "acv": "$1.26M", "percent": "35%" },
-          { "value": "seats", "acv": "$1.08M", "percent": "30%" },
-          { "value": "usage", "acv": "$0.72M", "percent": "20%" },
-          { "value": "premium", "acv": "$0.54M", "percent": "15%" }
+          {
+            "value": "connectors",
+            "acv": "$1.26M",
+            "percent": "35%"
+          },
+          {
+            "value": "seats",
+            "acv": "$1.08M",
+            "percent": "30%"
+          },
+          {
+            "value": "usage",
+            "acv": "$0.72M",
+            "percent": "20%"
+          },
+          {
+            "value": "premium",
+            "acv": "$0.54M",
+            "percent": "15%"
+          }
         ]
       },
       {
         "name": "cohort",
-        "values": ["Weekly", "Montly", "Quarterly"],
+        "values": [
+          "Weekly",
+          "Montly",
+          "Quarterly"
+        ],
         "breakdown": [
-          { "value": "Montly", "acv": "$1.80M", "percent": "50%" },
-          { "value": "Quarterly", "acv": "$1.26M", "percent": "35%" },
-          { "value": "Weekly", "acv": "$0.54M", "percent": "15%" }
+          {
+            "value": "Montly",
+            "acv": "$1.80M",
+            "percent": "50%"
+          },
+          {
+            "value": "Quarterly",
+            "acv": "$1.26M",
+            "percent": "35%"
+          },
+          {
+            "value": "Weekly",
+            "acv": "$0.54M",
+            "percent": "15%"
+          }
         ]
       }
     ]

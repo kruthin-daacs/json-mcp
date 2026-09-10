@@ -11,98 +11,296 @@
       "status": "healthy"
     },
     "measures": {
-      "nrr": { "value": 1.05, "display": "105%", "unit": "ratio" },
-      "nrr_threshold": { "value": 1.00, "display": "100%", "unit": "ratio", "basis": "fixture's own '>= 100%' retention threshold (goal.threshold)" },
-      "nrr_delta_vs_threshold": { "value": 0.05, "display": "+5%", "unit": "ratio", "basis": "nrr minus nrr_threshold" },
-      "grr": { "value": 0.96, "display": "96%", "unit": "ratio" },
-      "renewal_book": { "value": 12.0, "display": "$12.0M", "unit": "usd_millions" },
-      "renewed_arr": { "value": 10.2, "display": "$10.2M", "unit": "usd_millions" },
-      "red_tier_arr": { "value": 2.2, "display": "$2.2M", "unit": "usd_millions" },
+      "nrr": {
+        "value": 1.05,
+        "display": "105%",
+        "unit": "ratio"
+      },
+      "nrr_threshold": {
+        "value": 1.0,
+        "display": "100%",
+        "unit": "ratio",
+        "basis": "fixture's own '>= 100%' retention threshold (goal.threshold)"
+      },
+      "nrr_delta_vs_threshold": {
+        "value": 0.05,
+        "display": "+5%",
+        "unit": "ratio",
+        "basis": "nrr minus nrr_threshold"
+      },
+      "grr": {
+        "value": 0.96,
+        "display": "96%",
+        "unit": "ratio"
+      },
+      "renewal_book": {
+        "value": 12.0,
+        "display": "$12.0M",
+        "unit": "usd_millions"
+      },
+      "renewed_arr": {
+        "value": 10.2,
+        "display": "$10.2M",
+        "unit": "usd_millions"
+      },
+      "red_tier_arr": {
+        "value": 2.2,
+        "display": "$2.2M",
+        "unit": "usd_millions"
+      },
       "open_renewal": {
         "value": 0.8,
         "display": "$0.8M",
         "unit": "usd_millions",
         "account": "Meridian",
         "deadline": "Dec 16",
-        "health_delta": -0.40,
+        "health_delta": -0.4,
         "health_delta_display": "-40%"
+      },
+      "renewal_due": {
+        "value": 12.0,
+        "display": "$12.0M due (34 accounts)",
+        "unit": "usd_millions",
+        "basis": "measures.renewal_book with inputs 'Renewal Book Due' account count"
+      },
+      "at_risk_arr": {
+        "value": 2.2,
+        "display": "$2.2M at risk",
+        "unit": "usd_millions",
+        "basis": "measures.red_tier_arr"
+      },
+      "top_risk_account": {
+        "value": 0.8,
+        "display": "Meridian $0.8M \u2014 decision Dec 16",
+        "unit": "usd_millions",
+        "basis": "measures.open_renewal (account, deadline)"
       }
     },
     "drivers": [
-      { "metric": "Renewal Rate", "value": "85% ($10.2M of $12.0M book, 27 of 34 accounts)" },
-      { "metric": "At_risk ARR", "value": "$2.2M (incl. Meridian $0.8M)" },
-      { "metric": "Account Health", "value": "27 accounts renewed healthy; 1 red flag (Meridian, health -40%)" },
-      { "metric": "Contracton_at_renewal", "value": "-$0.6M (2 accounts)" }
+      {
+        "metric": "Renewal Rate",
+        "value": "85% ($10.2M of $12.0M book, 27 of 34 accounts)"
+      },
+      {
+        "metric": "At_risk ARR",
+        "value": "$2.2M (incl. Meridian $0.8M)"
+      },
+      {
+        "metric": "Account Health",
+        "value": "27 accounts renewed healthy; 1 red flag (Meridian, health -40%)"
+      },
+      {
+        "metric": "Contracton_at_renewal",
+        "value": "-$0.6M (2 accounts)"
+      }
     ],
     "inputs": [
-      { "metric": "Renewal Book Due", "value": "$12.0M (34 accounts)" },
-      { "metric": "Renewed", "value": "$10.2M (27 accounts)" },
-      { "metric": "Contracted", "value": "-$0.6M (2 accounts)" },
-      { "metric": "Churned", "value": "-$1.2M (5 accounts)" },
-      { "metric": "Open", "value": "$0.8M (Meridian, decision pending Dec 16)" }
+      {
+        "metric": "Renewal Book Due",
+        "value": "$12.0M (34 accounts)"
+      },
+      {
+        "metric": "Renewed",
+        "value": "$10.2M (27 accounts)"
+      },
+      {
+        "metric": "Contracted",
+        "value": "-$0.6M (2 accounts)"
+      },
+      {
+        "metric": "Churned",
+        "value": "-$1.2M (5 accounts)"
+      },
+      {
+        "metric": "Open",
+        "value": "$0.8M (Meridian, decision pending Dec 16)"
+      }
     ],
     "guardrails": [
-      { "metric": "NRR", "value": "105%", "threshold": ">= 100%", "status": "healthy" },
-      { "metric": "GRR Floor", "value": "96%", "threshold": "floor", "status": "healthy" },
-      { "metric": "Churn Concentration", "value": "$2.2M red (incl. Meridian $0.8M)", "threshold": "in band", "status": "watch" }
+      {
+        "metric": "NRR",
+        "value": "105%",
+        "threshold": ">= 100%",
+        "status": "healthy"
+      },
+      {
+        "metric": "GRR Floor",
+        "value": "96%",
+        "threshold": "floor",
+        "status": "healthy"
+      },
+      {
+        "metric": "Churn Concentration",
+        "value": "$2.2M red (incl. Meridian $0.8M)",
+        "threshold": "in band",
+        "status": "watch"
+      }
     ],
     "funnel": [
-      { "stage": "renewal_due", "metric": "Book due", "value": "$12.0M (34 accounts)" },
-      { "stage": "health_risk_check", "metric": "Health & risk assessed", "value": "1 red flag (Meridian, -40% health), 33 stable" },
-      { "stage": "contract_resign", "metric": "Contract / Re-sign outcomes", "value": "$10.2M renewed (27) + -$0.6M contracted (2)" },
-      { "stage": "invoice", "metric": "Invoiced", "value": "$10.2M" },
-      { "stage": "cash", "metric": "Renewed, cash pending", "value": "$10.2M (realization tracked under Cash workflow)" }
+      {
+        "stage": "renewal_due",
+        "metric": "Book due",
+        "value": "$12.0M (34 accounts)"
+      },
+      {
+        "stage": "health_risk_check",
+        "metric": "Health & risk assessed",
+        "value": "1 red flag (Meridian, -40% health), 33 stable"
+      },
+      {
+        "stage": "contract_resign",
+        "metric": "Contract / Re-sign outcomes",
+        "value": "$10.2M renewed (27) + -$0.6M contracted (2)"
+      },
+      {
+        "stage": "invoice",
+        "metric": "Invoiced",
+        "value": "$10.2M"
+      },
+      {
+        "stage": "cash",
+        "metric": "Renewed, cash pending",
+        "value": "$10.2M (realization tracked under Cash workflow)"
+      }
     ],
     "entities": [
-      { "name": "Account" },
-      { "name": "Contract" },
-      { "name": "Renewal" },
-      { "name": "Health Signal" }
+      {
+        "name": "Account"
+      },
+      {
+        "name": "Contract"
+      },
+      {
+        "name": "Renewal"
+      },
+      {
+        "name": "Health Signal"
+      }
     ],
     "dimensions": [
       {
         "name": "segment",
-        "values": ["enterprise", "mid_market", "smb"],
+        "values": [
+          "enterprise",
+          "mid_market",
+          "smb"
+        ],
         "breakdown": [
-          { "value": "enterprise", "book": "$7.20M", "percent": "60%" },
-          { "value": "mid_market", "book": "$3.60M", "percent": "30%" },
-          { "value": "smb", "book": "$1.20M", "percent": "10%" }
+          {
+            "value": "enterprise",
+            "book": "$7.20M",
+            "percent": "60%"
+          },
+          {
+            "value": "mid_market",
+            "book": "$3.60M",
+            "percent": "30%"
+          },
+          {
+            "value": "smb",
+            "book": "$1.20M",
+            "percent": "10%"
+          }
         ]
       },
       {
         "name": "account",
-        "values": ["Free", "Custom", "Enterprice"],
+        "values": [
+          "Free",
+          "Custom",
+          "Enterprice"
+        ],
         "breakdown": [
-          { "value": "Enterprice", "book": "$8.40M", "percent": "70%" },
-          { "value": "Custom", "book": "$3.60M", "percent": "30%" },
-          { "value": "Free", "book": "$0.0M", "percent": "0%" }
+          {
+            "value": "Enterprice",
+            "book": "$8.40M",
+            "percent": "70%"
+          },
+          {
+            "value": "Custom",
+            "book": "$3.60M",
+            "percent": "30%"
+          },
+          {
+            "value": "Free",
+            "book": "$0.0M",
+            "percent": "0%"
+          }
         ]
       },
       {
         "name": "cohort",
-        "values": ["Weekly", "Monthly", "Quaterly"],
+        "values": [
+          "Weekly",
+          "Monthly",
+          "Quaterly"
+        ],
         "breakdown": [
-          { "value": "Monthly", "book": "$6.00M", "percent": "50%" },
-          { "value": "Quaterly", "book": "$4.20M", "percent": "35%" },
-          { "value": "Weekly", "book": "$1.80M", "percent": "15%" }
+          {
+            "value": "Monthly",
+            "book": "$6.00M",
+            "percent": "50%"
+          },
+          {
+            "value": "Quaterly",
+            "book": "$4.20M",
+            "percent": "35%"
+          },
+          {
+            "value": "Weekly",
+            "book": "$1.80M",
+            "percent": "15%"
+          }
         ]
       },
       {
         "name": "health_tier",
-        "values": ["green", "yellow", "red"],
+        "values": [
+          "green",
+          "yellow",
+          "red"
+        ],
         "breakdown": [
-          { "value": "green", "book": "$7.84M", "percent": "65.3%" },
-          { "value": "yellow", "book": "$1.96M", "percent": "16.3%" },
-          { "value": "red", "book": "$2.20M", "percent": "18.3%" }
+          {
+            "value": "green",
+            "book": "$7.84M",
+            "percent": "65.3%"
+          },
+          {
+            "value": "yellow",
+            "book": "$1.96M",
+            "percent": "16.3%"
+          },
+          {
+            "value": "red",
+            "book": "$2.20M",
+            "percent": "18.3%"
+          }
         ]
       },
       {
         "name": "renewal_window",
-        "values": ["90", "60", "30"],
+        "values": [
+          "90",
+          "60",
+          "30"
+        ],
         "breakdown": [
-          { "value": "90", "book": "$5.00M", "percent": "41.7%" },
-          { "value": "60", "book": "$4.00M", "percent": "33.3%" },
-          { "value": "30", "book": "$3.00M", "percent": "25.0%" }
+          {
+            "value": "90",
+            "book": "$5.00M",
+            "percent": "41.7%"
+          },
+          {
+            "value": "60",
+            "book": "$4.00M",
+            "percent": "33.3%"
+          },
+          {
+            "value": "30",
+            "book": "$3.00M",
+            "percent": "25.0%"
+          }
         ]
       }
     ]

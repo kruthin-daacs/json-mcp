@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-operating" viewBox="0 0 1440 940" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DataOrbit business map, operating view">
+  <rect width="1440" height="940" fill="#F5F2EB"/>
+  
+  <text x="40" y="40" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="15" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">DataOrbit</text>
+  <text x="126" y="40" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="13" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">/</text>
+  <text x="138" y="40" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="15" fill="#2E2A24" font-weight="500" letter-spacing="0" text-anchor="start">Atlas</text>
+  <text x="186" y="40" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="13" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">/</text>
+  <text x="198" y="40" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="13" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">Operating</text>
+  <text x="40" y="58" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10.5" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">business operating model · altitudes each at their own cadence</text>
+  <g class="toggle" role="button" tabindex="0">
+    <rect x="1210" y="22" width="198" height="30" rx="15" fill="#FBF9F4" stroke="#DFD8C8"/>
+    <rect x="1212" y="24" width="96" height="26" rx="13" fill="#2E2A24"/>
+    <text x="1260" y="41" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#F5F2EB" font-weight="500" letter-spacing="0.8" text-anchor="middle">Operating</text>
+    <text x="1358" y="41" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="500" letter-spacing="0.8" text-anchor="middle">Model</text>
+  </g>
+  <line x1="40" y1="72" x2="1408" y2="72" stroke="#DFD8C8" stroke-width="1"/>
+  
+  <rect x="40" y="92" width="1368" height="96" rx="12" fill="#FBF9F4" stroke="#DFD8C8"/>
+  <rect x="40" y="92" width="4" height="96" rx="2" fill="#8C7B5E"/>
+  <text x="68" y="116" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">OBJECTIVE · TARGET · NOT A WORKFLOW</text>
+  <text x="68" y="144" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="22" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Is the business on plan?</text>
+  <text x="68" y="166" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="11" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">tracking ARR · quarterly</text>
+  <text x="1088" y="132" font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" fill="#2E2A24" font-weight="500" letter-spacing="0" text-anchor="end">$54.0M of $60.0M target</text>
+  <text x="1380" y="132" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">behind</text>
+  <g class="pace-anchor">
+    <rect x="1088" y="148" width="292" height="5" rx="2.5" fill="#E5DECE"/><rect x="1088" y="148" width="262.8" height="5" rx="2.5" fill="#8C7B5E"/>
+    <text x="1380" y="170" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">90% to target · +$6.0M net new QTD</text>
+  </g>
+  <rect x="124" y="204" width="1284" height="164" rx="14" fill="#EFEAE0"/><text x="104" y="286" transform="rotate(-90 104 286)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#9A9487" letter-spacing="2.2" text-anchor="middle">FINANCE</text><line x1="118" y1="214" x2="118" y2="358" stroke="#DFD8C8" stroke-width="1"/>
+  <rect x="124" y="392" width="1284" height="200" rx="14" fill="#EFEAE0"/><text x="104" y="492" transform="rotate(-90 104 492)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#9A9487" letter-spacing="2.2" text-anchor="middle">REVENUE</text><line x1="118" y1="402" x2="118" y2="582" stroke="#DFD8C8" stroke-width="1"/>
+  <rect x="124" y="628" width="1284" height="200" rx="14" fill="#EFEAE0"/><text x="104" y="728" transform="rotate(-90 104 728)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#9A9487" letter-spacing="2.2" text-anchor="middle">REVOPS FLOW</text><line x1="118" y1="638" x2="118" y2="818" stroke="#DFD8C8" stroke-width="1"/>
+  
+  <rect x="140" y="216" width="600" height="140" rx="10" fill="#FBF9F4" stroke="#E0BE97" stroke-width="1.25"/>
+  <text x="158" y="238" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L1 · FINANCE</text>
+  <circle cx="688.8" cy="235" r="3.2" fill="#E0BE97" stroke="#6E675C" stroke-width="0.6"/><text x="722" y="238" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">warm</text>
+  <text x="158" y="262" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="18" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Revenue Accounting</text>
+  <text x="158" y="279" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10.5" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">CEO/CFO · quarterly</text>
+  <line x1="158" y1="292" x2="722" y2="292" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="158" y="310" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · ARR</text>
+  <text x="158" y="336" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="30" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">$54.0M</text>
+  <text x="263" y="336" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">/ $60.0M target</text>
+  <rect x="486" y="308" width="236" height="5" rx="2.5" fill="#E5DECE"/><rect x="486" y="308" width="212.4" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="722" y="328" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">90% to $60.0M target</text>
+  <text x="722" y="346" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10.5" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="end">behind plan · $6.0M gap</text>
+  <text x="158" y="350" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">New + Retention + Expansion − Churn</text>
+  <rect x="800" y="216" width="600" height="140" rx="10" fill="#FBF9F4" stroke="#D8D2C4" stroke-width="1.25"/>
+  <text x="818" y="238" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L1 · FINANCE</text>
+  <circle cx="1329.9" cy="235" r="3.2" fill="#D8D2C4" stroke="#6E675C" stroke-width="0.6"/><text x="1382" y="238" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">nominal</text>
+  <text x="818" y="262" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="18" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Cash Accounting</text>
+  <text x="818" y="279" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10.5" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">CFO · monthly</text>
+  <line x1="818" y1="292" x2="1382" y2="292" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="818" y="310" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · Cash Collected</text>
+  <text x="818" y="336" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="30" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">$15.2M</text>
+  <text x="923" y="336" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">≈ $17.4M billed</text>
+  <rect x="1146" y="308" width="236" height="5" rx="2.5" fill="#E5DECE"/><rect x="1146" y="308" width="205.3" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="1382" y="328" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">87% collected of $17.4M billed</text>
+  <text x="1382" y="346" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10.5" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="end">$2.2M outstanding AR — timing, not risk · DSO 46 days</text>
+  <text x="818" y="350" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">Cash = Cash Collected (Billed)</text>
+  <line x1="770" y1="234" x2="770" y2="338" stroke="#9A9487" stroke-width="1" stroke-dasharray="3 4"/>
+    <rect x="761" y="230" width="18" height="112" fill="#EFEAE0"/>
+    <text x="773.5" y="286" transform="rotate(-90 773.5 286)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" letter-spacing="1.4" text-anchor="middle">realized by cash</text><path d="M 609.5 404 L 609.5 382 L 1251.5 382 L 1251.5 404" fill="none" stroke="#E0BE97" stroke-width="1.1" stroke-dasharray="3 4"/>
+    <rect x="790.5" y="373" width="280" height="18" rx="9" fill="#F5F2EB"/>
+    <text x="930.5" y="386" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.4" text-anchor="middle">Meridian $0.8M open · decision Dec 16</text>
+  
+  <rect x="140" y="404" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E4C4CC" stroke-width="1.25"/>
+  <text x="155" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L2 · LEVER</text>
+  <circle cx="363.6" cy="421" r="3.2" fill="#E4C4CC" stroke="#6E675C" stroke-width="0.6"/><text x="422" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">critical</text>
+  <text x="155" y="447" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="17" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">New Revenue</text>
+  <text x="155" y="463" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">VP Sales · weekly</text>
+  <line x1="155" y1="476" x2="422" y2="476" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="155" y="494" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · New ACV</text>
+  <text x="155" y="524" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="29" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">$3.6M</text>
+  <text x="422" y="524" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">/ $5.5M target</text>
+  <rect x="155" y="536" width="267" height="5" rx="2.5" fill="#E5DECE"/><rect x="155" y="536" width="173.6" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="155" y="554" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">65% of $5.5M target</text>
+  <text x="155" y="570" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">coverage 1.1x against 2.0x floor · $1.9M gap</text>
+  <rect x="461" y="404" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E0BE97" stroke-width="1.25"/>
+  <text x="476" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L2 · LEVER</text>
+  <circle cx="709.8" cy="421" r="3.2" fill="#E0BE97" stroke="#6E675C" stroke-width="0.6"/><text x="743" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">warm</text>
+  <text x="476" y="447" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="17" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Retention Revenue</text>
+  <text x="476" y="463" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">VP CS · 90/60/30</text>
+  <line x1="476" y1="476" x2="743" y2="476" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="476" y="494" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · NRR</text>
+  <text x="476" y="524" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="29" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">105%</text>
+  <text x="743" y="524" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">GRR 96%</text>
+  <rect x="476" y="536" width="267" height="5" rx="2.5" fill="#E5DECE"/><rect x="476" y="536" width="267.0" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="476" y="554" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">105% of ≥100% floor</text>
+  <text x="476" y="570" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">$2.2M red tier · Meridian $0.8M open</text>
+  <rect x="782" y="404" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#D8D2C4" stroke-width="1.25"/>
+  <text x="797" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L2 · LEVER</text>
+  <circle cx="1011.9" cy="421" r="3.2" fill="#D8D2C4" stroke="#6E675C" stroke-width="0.6"/><text x="1064" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">nominal</text>
+  <text x="797" y="447" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="17" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Expansion Revenue</text>
+  <text x="797" y="463" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">VP CS / Sales · quarterly</text>
+  <line x1="797" y1="476" x2="1064" y2="476" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="797" y="494" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · Expansion ARR</text>
+  <text x="797" y="524" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="29" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">+$4.2M</text>
+  <text x="1064" y="524" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">vs &gt; $0 floor</text>
+  <rect x="797" y="536" width="267" height="5" rx="2.5" fill="#E5DECE"/><rect x="797" y="536" width="267.0" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="797" y="554" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">$2.8M at-renewal + $1.4M in-quarter</text>
+  <text x="797" y="570" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">all guardrails healthy · discount ~10%</text>
+  <rect x="1103" y="404" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E0BE97" stroke-width="1.25"/>
+  <text x="1118" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L2 · LEVER</text>
+  <circle cx="1351.8" cy="421" r="3.2" fill="#E0BE97" stroke="#6E675C" stroke-width="0.6"/><text x="1385" y="424" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.2" text-anchor="end">warm</text>
+  <text x="1118" y="447" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="17" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Churn Revenue</text>
+  <text x="1118" y="463" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">VP CS · continuous</text>
+  <line x1="1118" y1="476" x2="1385" y2="476" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="1118" y="494" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · Minimised Lost ARR</text>
+  <text x="1118" y="524" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="29" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">−$1.8M</text>
+  <text x="1385" y="524" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">vs GRR 96% floor</text>
+  <rect x="1118" y="536" width="267" height="5" rx="2.5" fill="#E5DECE"/><rect x="1118" y="536" width="190.9" height="5" rx="2.5" fill="#8C7B5E"/>
+  <text x="1118" y="554" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">save rate 28.6% of 40% target</text>
+  <text x="1118" y="570" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">churn −$1.2M + contraction −$0.6M · 5 of 7 lost</text>
+  <line x1="288.5" y1="580" x2="288.5" y2="640" stroke="#E4C4CC" stroke-width="1.25" stroke-dasharray="3 4"/>
+      <circle cx="288.5" cy="580" r="2.4" fill="#E4C4CC"/>
+      <circle cx="288.5" cy="640" r="2.4" fill="#E4C4CC"/>
+      <rect x="246.5" y="602" width="84" height="16" rx="8" fill="#F5F2EB"/>
+      <text x="288.5" y="613.5" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8" fill="#9A9487" font-weight="400" letter-spacing="1" text-anchor="middle">two faces</text><line x1="609.5" y1="580" x2="609.5" y2="640" stroke="#E0BE97" stroke-width="1.25" stroke-dasharray="3 4"/>
+      <circle cx="609.5" cy="580" r="2.4" fill="#E0BE97"/>
+      <circle cx="609.5" cy="640" r="2.4" fill="#E0BE97"/>
+      <rect x="567.5" y="602" width="84" height="16" rx="8" fill="#F5F2EB"/>
+      <text x="609.5" y="613.5" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8" fill="#9A9487" font-weight="400" letter-spacing="1" text-anchor="middle">two faces</text><line x1="930.5" y1="580" x2="930.5" y2="640" stroke="#D8D2C4" stroke-width="1.25" stroke-dasharray="3 4"/>
+      <circle cx="930.5" cy="580" r="2.4" fill="#D8D2C4"/>
+      <circle cx="930.5" cy="640" r="2.4" fill="#D8D2C4"/>
+      <rect x="888.5" y="602" width="84" height="16" rx="8" fill="#F5F2EB"/>
+      <text x="930.5" y="613.5" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8" fill="#9A9487" font-weight="400" letter-spacing="1" text-anchor="middle">two faces</text><line x1="1251.5" y1="580" x2="1251.5" y2="640" stroke="#E0BE97" stroke-width="1.25" stroke-dasharray="3 4"/>
+      <circle cx="1251.5" cy="580" r="2.4" fill="#E0BE97"/>
+      <circle cx="1251.5" cy="640" r="2.4" fill="#E0BE97"/>
+      <rect x="1209.5" y="602" width="84" height="16" rx="8" fill="#F5F2EB"/>
+      <text x="1251.5" y="613.5" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8" fill="#9A9487" font-weight="400" letter-spacing="1" text-anchor="middle">two faces</text>
+  
+  <rect x="140" y="640" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E4C4CC" stroke-width="1.25"/>
+  <text x="155" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L3 · FLOW</text>
+  <text x="422" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1" text-anchor="end">VP Sales</text>
+  <text x="155" y="683" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="16" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Lead-to-Cash</text>
+  <line x1="155" y1="696" x2="422" y2="696" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="155" y="714" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · New ACV</text>
+  <text x="155" y="740" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="25" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">$3.6M</text>
+  <text x="422" y="740" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">won of $14.2M qualified</text>
+  <rect x="155" y="752" width="267" height="34" rx="6" fill="#EFEAE0"/>
+  <text x="163" y="766" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">Lead › Qualify › Quote › Contract</text>
+  <text x="163" y="779" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">› Provision › Invoice › Cash</text>
+  <text x="155" y="804" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">Qualify $14.2M → Quote $9.6M → Won $3.6M</text>
+  <rect x="461" y="640" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E0BE97" stroke-width="1.25"/>
+  <text x="476" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L3 · FLOW</text>
+  <text x="743" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1" text-anchor="end">VP CS</text>
+  <text x="476" y="683" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="16" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Renewal-to-Cash</text>
+  <line x1="476" y1="696" x2="743" y2="696" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="476" y="714" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · NRR</text>
+  <text x="476" y="740" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="25" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">$10.2M</text>
+  <text x="743" y="740" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">renewed of $12.0M book</text>
+  <rect x="476" y="752" width="267" height="34" rx="6" fill="#EFEAE0"/>
+  <text x="484" y="766" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">Renewal due › Health &amp; risk check</text>
+  <text x="484" y="779" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">› Re-sign › Invoice › Cash</text>
+  <text x="476" y="804" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">1 red flag at health check (Meridian −40%)</text>
+  <rect x="782" y="640" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#D8D2C4" stroke-width="1.25"/>
+  <text x="797" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L3 · FLOW</text>
+  <text x="1064" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1" text-anchor="end">VP CS / Sales</text>
+  <text x="797" y="683" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="16" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Quote-to-Cash</text>
+  <line x1="797" y1="696" x2="1064" y2="696" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="797" y="714" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · Expansion ARR</text>
+  <text x="797" y="740" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="25" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">+$4.2M</text>
+  <text x="1064" y="740" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">provisioned of $5.1M quoted</text>
+  <rect x="797" y="752" width="267" height="34" rx="6" fill="#EFEAE0"/>
+  <text x="805" y="766" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">Signal › Quote › Contract</text>
+  <text x="805" y="779" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">› Provision › Invoice › Cash</text>
+  <text x="797" y="804" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">~29 signals · top 5 accounts ≈ 35%</text>
+  <rect x="1103" y="640" width="297" height="176" rx="10" fill="#FBF9F4" stroke="#E0BE97" stroke-width="1.25"/>
+  <text x="1118" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">L3 · FLOW</text>
+  <text x="1385" y="660" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1" text-anchor="end">VP CS</text>
+  <text x="1118" y="683" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="16" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">Risk-to-Resolution</text>
+  <line x1="1118" y1="696" x2="1385" y2="696" stroke="#DFD8C8" stroke-width="1"/>
+  <text x="1118" y="714" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#9A9487" font-weight="500" letter-spacing="1.4" text-anchor="start">GOAL · Minimised Lost ARR</text>
+  <text x="1118" y="740" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="25" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">−$1.8M</text>
+  <text x="1385" y="740" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="end">resolved · $0.8M open</text>
+  <rect x="1118" y="752" width="267" height="34" rx="6" fill="#EFEAE0"/>
+  <text x="1126" y="766" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">Risk signal › Intervene</text>
+  <text x="1126" y="779" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5" fill="#6E675C" font-weight="400" letter-spacing="0.2" text-anchor="start">› Save / Downgrade › Offboard / Credit</text>
+  <text x="1118" y="804" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="10" fill="#2E2A24" font-weight="400" letter-spacing="0" text-anchor="start">7 flagged → 2 saved, 5 offboarded</text>
+  
+  <line x1="40" y1="848" x2="1408" y2="848" stroke="#DFD8C8" stroke-width="1"/>
+  <circle cx="46" cy="868" r="3.6" fill="#E0BE97"/>
+  <text x="60" y="872" font-family="Inter Tight, Helvetica Neue, sans-serif" font-size="14" fill="#2E2A24" font-weight="600" letter-spacing="0" text-anchor="start">3 warm workflows · start with New Revenue</text>
+  <text x="371.40000000000003" y="872" font-family="DM Sans, Helvetica Neue, sans-serif" font-size="12" fill="#6E675C" font-weight="400" letter-spacing="0" text-anchor="start">— pipeline coverage is 1.1x against a 2.0x floor, so the $1.9M ACV gap has nothing behind it to close</text>
+  <text x="60" y="892" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" fill="#9A9487" font-weight="400" letter-spacing="0" text-anchor="start">Cross-altitude cause not established: $2.2M outstanding AR and $2.2M red-tier ARR sit on different named accounts.</text>
+  
+</svg>

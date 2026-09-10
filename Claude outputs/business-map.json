@@ -1,0 +1,80 @@
+{
+  "name": "DataOrbit business operating model",
+  "altitudes": [
+    {
+      "name": "Finance",
+      "workflows": [
+        {
+          "name": "Revenue",
+          "goal_metric": "ARR",
+          "current_value": "$54.0M",
+          "delta": "+$6.0M"
+        },
+        {
+          "name": "Cash",
+          "goal_metric": "Cash Collected",
+          "current_value": "$15.2M",
+          "delta": "-$2.2M"
+        }
+      ]
+    },
+    {
+      "name": "Revenue Levers",
+      "workflows": [
+        {
+          "name": "New Revenue",
+          "goal_metric": "New ACV",
+          "current_value": "$3.6M",
+          "delta": "-$1.9M"
+        },
+        {
+          "name": "Retention Revenue",
+          "goal_metric": "NRR",
+          "current_value": "105%",
+          "delta": "+5%"
+        },
+        {
+          "name": "Expansion Revenue",
+          "goal_metric": "Expansion ARR",
+          "current_value": "+$4.2M",
+          "delta": "+$4.2M"
+        },
+        {
+          "name": "Churn Revenue",
+          "goal_metric": "Minimised Lost ARR",
+          "current_value": "-$1.8M",
+          "delta": "-$0.8M"
+        }
+      ]
+    },
+    {
+      "name": "Flows",
+      "flows": [
+        {
+          "name": "Lead-to-Cash",
+          "goal_metric": "New ACV",
+          "current_value": "$3.6M",
+          "delta": "-$1.9M"
+        },
+        {
+          "name": "Renewal-to-Cash",
+          "goal_metric": "NRR",
+          "current_value": "105%",
+          "delta": "+5%"
+        },
+        {
+          "name": "Quote-to-Cash",
+          "goal_metric": "Expansion ARR",
+          "current_value": "+$4.2M",
+          "delta": "+$4.2M"
+        },
+        {
+          "name": "Risk-to-Resolution",
+          "goal_metric": "Minimised Lost ARR",
+          "current_value": "-$1.8M",
+          "delta": "-$0.8M"
+        }
+      ]
+    }
+  ]
+}

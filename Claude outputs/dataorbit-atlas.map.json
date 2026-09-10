@@ -1,0 +1,193 @@
+{
+  "map_version": "1.0",
+  "source": "vedha-fixtures · vedha_list_contexts + vedha_get_atlas_review + vedha_get_canvas",
+  "org": "DataOrbit",
+  "mode": "first-time",
+  "view": "operating",
+  "objective": {
+    "label": "Is the business on plan?",
+    "metric": "ARR",
+    "tracking": "$54.0M of $60.0M target",
+    "pace": 0.9,
+    "pace_label": "90% to target · +$6.0M net new QTD",
+    "status": "behind",
+    "cadence": "quarterly"
+  },
+  "altitudes": [
+    {
+      "level": 1,
+      "band": "Finance",
+      "owner": "CFO",
+      "nodes": [
+        {
+          "id": "revenue_accounting",
+          "name": "Revenue Accounting",
+          "owner": "CEO/CFO · quarterly",
+          "goal": "ARR",
+          "value": "$54.0M",
+          "value_secondary": "/ $60.0M target",
+          "pace": 0.9,
+          "pace_label": "90% to $60.0M target",
+          "note": "behind plan · $6.0M gap",
+          "sub": "New + Retention + Expansion − Churn",
+          "state": "warm"
+        },
+        {
+          "id": "cash_accounting",
+          "name": "Cash Accounting",
+          "owner": "CFO · monthly",
+          "goal": "Cash Collected",
+          "value": "$15.2M",
+          "value_secondary": "≈ $17.4M billed",
+          "pace": 0.87,
+          "pace_label": "87% collected of $17.4M billed",
+          "note": "$2.2M outstanding AR — timing, not risk · DSO 46 days",
+          "sub": "Cash = Cash Collected (Billed)",
+          "state": "nominal"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "band": "Revenue",
+      "owner": "VP owners",
+      "nodes": [
+        {
+          "id": "new_business",
+          "name": "New Revenue",
+          "owner": "VP Sales · weekly",
+          "goal": "New ACV",
+          "value": "$3.6M",
+          "value_secondary": "/ $5.5M target",
+          "pace": 0.65,
+          "pace_label": "65% of $5.5M target",
+          "note": "coverage 1.1x against 2.0x floor · $1.9M gap",
+          "state": "critical"
+        },
+        {
+          "id": "retention",
+          "name": "Retention Revenue",
+          "owner": "VP CS · 90/60/30",
+          "goal": "NRR",
+          "value": "105%",
+          "value_secondary": "GRR 96%",
+          "pace": 1,
+          "pace_label": "105% of ≥100% floor",
+          "note": "$2.2M red tier · Meridian $0.8M open",
+          "state": "warm"
+        },
+        {
+          "id": "expansion",
+          "name": "Expansion Revenue",
+          "owner": "VP CS / Sales · quarterly",
+          "goal": "Expansion ARR",
+          "value": "+$4.2M",
+          "value_secondary": "vs > $0 floor",
+          "pace": 1,
+          "pace_label": "$2.8M at-renewal + $1.4M in-quarter",
+          "note": "all guardrails healthy · discount ~10%",
+          "state": "nominal"
+        },
+        {
+          "id": "churn_engine",
+          "name": "Churn Revenue",
+          "owner": "VP CS · continuous",
+          "goal": "Minimised Lost ARR",
+          "value": "−$1.8M",
+          "value_secondary": "vs GRR 96% floor",
+          "pace": 0.715,
+          "pace_label": "save rate 28.6% of 40% target",
+          "note": "churn −$1.2M + contraction −$0.6M · 5 of 7 lost",
+          "state": "warm"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "band": "RevOps Flow",
+      "owner": "RevOps",
+      "nodes": [
+        {
+          "id": "lead_to_cash",
+          "name": "Lead-to-Cash",
+          "under": "new_business",
+          "owner": "VP Sales",
+          "goal": "New ACV",
+          "value": "$3.6M",
+          "value_secondary": "won of $14.2M qualified",
+          "steps": [
+            "Lead › Qualify › Quote › Contract",
+            "› Provision › Invoice › Cash"
+          ],
+          "note": "Qualify $14.2M → Quote $9.6M → Won $3.6M",
+          "state": "critical"
+        },
+        {
+          "id": "renewal_to_cash",
+          "name": "Renewal-to-Cash",
+          "under": "retention",
+          "owner": "VP CS",
+          "goal": "NRR",
+          "value": "$10.2M",
+          "value_secondary": "renewed of $12.0M book",
+          "steps": [
+            "Renewal due › Health & risk check",
+            "› Re-sign › Invoice › Cash"
+          ],
+          "note": "1 red flag at health check (Meridian −40%)",
+          "state": "warm"
+        },
+        {
+          "id": "quote_to_cash",
+          "name": "Quote-to-Cash",
+          "under": "expansion",
+          "owner": "VP CS / Sales",
+          "goal": "Expansion ARR",
+          "value": "+$4.2M",
+          "value_secondary": "provisioned of $5.1M quoted",
+          "steps": [
+            "Signal › Quote › Contract",
+            "› Provision › Invoice › Cash"
+          ],
+          "note": "~29 signals · top 5 accounts ≈ 35%",
+          "state": "nominal"
+        },
+        {
+          "id": "risk_to_resolution",
+          "name": "Risk-to-Resolution",
+          "under": "churn_engine",
+          "owner": "VP CS",
+          "goal": "Minimised Lost ARR",
+          "value": "−$1.8M",
+          "value_secondary": "resolved · $0.8M open",
+          "steps": [
+            "Risk signal › Intervene",
+            "› Save / Downgrade › Offboard / Credit"
+          ],
+          "note": "7 flagged → 2 saved, 5 offboarded",
+          "state": "warm"
+        }
+      ]
+    }
+  ],
+  "couplings": [
+    {
+      "from": "revenue_accounting",
+      "to": "cash_accounting",
+      "label": "realized by cash",
+      "kind": "vertical-gap"
+    },
+    {
+      "from": "retention",
+      "to": "churn_engine",
+      "label": "Meridian $0.8M open · decision Dec 16",
+      "kind": "lever-row"
+    }
+  ],
+  "read_line": {
+    "warm_count": 3,
+    "warmest": "New Revenue",
+    "reason": "pipeline coverage is 1.1x against a 2.0x floor, so the $1.9M ACV gap has nothing behind it to close",
+    "sub": "Cross-altitude cause not established: $2.2M outstanding AR and $2.2M red-tier ARR sit on different named accounts."
+  }
+}
